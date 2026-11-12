@@ -1,0 +1,3206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Kort over Akademigrunden</name>
+    <description/>
+    <Style id="icon-1521-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1521-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1532-000000-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1532-000000-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1532-000000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1532-000000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1532-000000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1534-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1536-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1544-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1548-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1554-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1554-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1580-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1598-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1599-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1603-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1614-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1634-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1644-000000-nodesc-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1644-000000-nodesc-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1644-000000-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1644-000000-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1644-000000-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1664-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1696-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1703-000000-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1703-000000-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1703-000000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1703-000000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1703-000000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1707-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1709-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1724-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1726-BDBDBD-labelson">
+      <IconStyle>
+        <color>ffbdbdbd</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1726-BDBDBD-labelson-nodesc">
+      <IconStyle>
+        <color>ffbdbdbd</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1733-000000-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1733-000000-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1733-000000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1733-000000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1733-000000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1733-000000-nodesc-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1733-000000-nodesc-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1733-000000-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1733-000000-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1733-000000-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1764-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1782-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1783-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1783-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1865-000000-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1865-000000-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1865-000000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1865-000000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1865-000000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1873-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1877-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1886-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1890-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1891-000000-labelson">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="line-000000-1200-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-000000-1200-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-000000-1200">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-000000-1200-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-000000-1200-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-000000-1200-nodesc-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-000000-1200-nodesc-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-000000-1200-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-000000-1200-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-000000-1200-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-000000-1200-77-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-000000-1200-77-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-000000-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-000000-1200-77-nodesc-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="poly-000000-1200-77-nodesc-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="poly-000000-1200-77-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-1200-77-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-1200-77-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-0288D1-1200-77-normal">
+      <LineStyle>
+        <color>ffd18802</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4dd18802</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-0288D1-1200-77-highlight">
+      <LineStyle>
+        <color>ffd18802</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4dd18802</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-0288D1-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-0288D1-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-0288D1-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-0288D1-1200-77-nodesc-normal">
+      <LineStyle>
+        <color>ffd18802</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4dd18802</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="poly-0288D1-1200-77-nodesc-highlight">
+      <LineStyle>
+        <color>ffd18802</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4dd18802</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="poly-0288D1-1200-77-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-0288D1-1200-77-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-0288D1-1200-77-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-1A237E-1200-77-nodesc-normal">
+      <LineStyle>
+        <color>ff7e231a</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d7e231a</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="poly-1A237E-1200-77-nodesc-highlight">
+      <LineStyle>
+        <color>ff7e231a</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d7e231a</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="poly-1A237E-1200-77-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-1A237E-1200-77-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-1A237E-1200-77-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-AFB42B-1200-77-nodesc-normal">
+      <LineStyle>
+        <color>ff2bb4af</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d2bb4af</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="poly-AFB42B-1200-77-nodesc-highlight">
+      <LineStyle>
+        <color>ff2bb4af</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d2bb4af</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="poly-AFB42B-1200-77-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-AFB42B-1200-77-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-AFB42B-1200-77-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-E65100-1200-77-normal">
+      <LineStyle>
+        <color>ff0051e6</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d0051e6</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-E65100-1200-77-highlight">
+      <LineStyle>
+        <color>ff0051e6</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d0051e6</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-E65100-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-E65100-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-E65100-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-FBC02D-1200-77-normal">
+      <LineStyle>
+        <color>ff2dc0fb</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d2dc0fb</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-FBC02D-1200-77-highlight">
+      <LineStyle>
+        <color>ff2dc0fb</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d2dc0fb</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-FBC02D-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-FBC02D-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-FBC02D-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-FFFFFF-1200-77-normal">
+      <LineStyle>
+        <color>ffffffff</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4dffffff</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-FFFFFF-1200-77-highlight">
+      <LineStyle>
+        <color>ffffffff</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4dffffff</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-FFFFFF-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-FFFFFF-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-FFFFFF-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>Kostskolen</name>
+      <Placemark>
+        <name>Nyalumnat</name>
+        <description>Består af de husene Hauch, Holberg, Frederik d. 2., Absalon, Heise og Bülow.</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5543,55.4309233,0
+                11.5543556,55.4302451,0
+                11.5542376,55.4300366,0
+                11.5537414,55.4300305,0
+                11.5536618,55.4309328,0
+                11.5543283,55.4309312,0
+                11.554327,55.4309449,0
+                11.5536507,55.4309421,0
+                11.5537258,55.4300168,0
+                11.5542529,55.4300244,0
+                11.5543722,55.4302451,0
+                11.5543295,55.4309225,0
+                11.5543,55.4309233,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Hauch [HAU]</name>
+        <description>1.g bolig, hænger sammen med Holberg</description>
+        <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5542678,55.4308547,0
+                11.5542664,55.4309255,0
+                11.5538104,55.4309255,0
+                11.5538104,55.4308524,0
+                11.5542678,55.4308547,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Holberg [HOL]</name>
+        <description>1.g bolig, hænger sammen med Hauch</description>
+        <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5542659,55.4307666,0
+                11.5538099,55.4307582,0
+                11.553814,55.4306928,0
+                11.5542712,55.4307004,0
+                11.5542659,55.4307666,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>HAU/HOL Fælleskøkken</name>
+        <description>Indgang via Hauch eller Holberg. Udgang til gården mellem Hauch og Holberg</description>
+        <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5538104,55.4308524,0
+                11.5538099,55.4307848,0
+                11.5538933,55.4307847,0
+                11.5538922,55.430852,0
+                11.5538104,55.4308524,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>HAU/HOL Fællesstue</name>
+        <description>Indgang via gangen mellem Hauch/Holberg på Holberg-siden. </description>
+        <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5538155,55.4307855,0
+                11.5537242,55.430784,0
+                11.5537269,55.430663,0
+                11.5538154,55.4306637,0
+                11.5538155,55.4307855,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>HAU Rengøringsrum</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1544-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5542442,55.4308654,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HOL Rengøringsrum</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1544-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5542521,55.4307093,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HAU Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.554273,55.4308893,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HOL Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5542677,55.430731,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HAU/HOL Nødudgang</name>
+        <description>Kan ikke åbnes udefra.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5538923,55.4308077,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Frederik d. 2 [FR2]</name>
+        <description>1.g bolig, hænger sammen med Absalon</description>
+        <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5538289,55.4306006,0
+                11.5538289,55.4305366,0
+                11.5542742,55.4305427,0
+                11.5542688,55.4306097,0
+                11.5538289,55.4306006,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Absalon [ABS]</name>
+        <description>1.g bolig, hænger sammen med Frederik d. 2.</description>
+        <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5542688,55.4304529,0
+                11.553845,55.4304469,0
+                11.553845,55.4303845,0
+                11.5542742,55.4303921,0
+                11.5542688,55.4304529,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>ABS/FR2 Fælleskøkken</name>
+        <description>Indgang via Absalon eller Frederik d. 2. Udgang til gården mellem Absalon og Frederik d. 2.</description>
+        <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5538995,55.4305376,0
+                11.5538289,55.4305366,0
+                11.5538352,55.4304736,0
+                11.5539009,55.4304752,0
+                11.5538995,55.4305376,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>ABS/FR2 Fællesstue</name>
+        <description>Indgang via gangen mellem Absalon/Frederik d. 2. på Absalon-siden.</description>
+        <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5539009,55.4304752,0
+                11.5538272,55.4304728,0
+                11.5538273,55.4305079,0
+                11.5537388,55.4305056,0
+                11.5537495,55.4303504,0
+                11.5539145,55.4303549,0
+                11.5539009,55.4304752,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>FR2 Rengøringsrum</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1544-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5542569,55.4305516,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ABS Rengøringsrum</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1544-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5542623,55.4303997,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>FR2 Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5542769,55.4305756,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ABS Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5542751,55.4304219,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ABS/FR2 Nødudgang</name>
+        <description>Kan ikke åbnes udefra.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.553905,55.430498,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Heise</name>
+        <description>2.g bolig, hænger sammen med Bülow</description>
+        <styleUrl>#poly-0288D1-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5542886,55.4302978,0
+                11.5538541,55.4302924,0
+                11.5538554,55.4302232,0
+                11.5542953,55.4302308,0
+                11.5542886,55.4302978,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Bülow</name>
+        <description>2.g bolig, hænger sammen med Heise</description>
+        <styleUrl>#poly-0288D1-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5542149,55.4301432,0
+                11.5538568,55.4301418,0
+                11.5538621,55.4300672,0
+                11.5542162,55.4300718,0
+                11.5542149,55.4301432,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>BÜL/HEI Fællesstue</name>
+        <styleUrl>#poly-0288D1-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5538524,55.430079,0
+                11.5539301,55.4300744,0
+                11.5539275,55.4301444,0
+                11.5538568,55.4301418,0
+                11.5538554,55.4302232,0
+                11.5537558,55.4302251,0
+                11.5537692,55.4300775,0
+                11.5538524,55.430079,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>BÜL/HEI Fælleskøkken</name>
+        <description>Indgang via Heise eller Bülow. Udgang til gården mellem Heise og Bülow.</description>
+        <styleUrl>#poly-0288D1-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5539143,55.430222,0
+                11.5538554,55.4302232,0
+                11.5538568,55.4301418,0
+                11.5539275,55.4301444,0
+                11.5539143,55.430222,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>BÜL/HEI Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5542962,55.4302652,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>BÜL/HEI Nødudgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5539216,55.4301829,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Vaskekælderen</name>
+        <description>Findes i kælderen i SH. Brug SH Trappeopgang.</description>
+        <styleUrl>#poly-FFFFFF-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5554787,55.4301029,0
+                11.5552748,55.4301021,0
+                11.5552775,55.4300466,0
+                11.55548,55.4300489,0
+                11.5554787,55.4301029,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Hverdagscaféen [Café]</name>
+        <description>Kostskolecaféen. Åbnes efter læseroen i hverdagene og ofte om eftermiddagene i weekenderne. Her er der mulighed for at få havegryn og snacks (Ikke altid), hvis aftensmad ikke var nok.</description>
+        <styleUrl>#poly-FFFFFF-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5554866,55.4300936,0
+                11.5552881,55.4300936,0
+                11.5552881,55.4300395,0
+                11.5554946,55.4300403,0
+                11.5554866,55.4300936,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>SH Kostafdeling</name>
+        <styleUrl>#poly-1A237E-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5554609,55.4302143,0
+                11.5551149,55.4302082,0
+                11.5551176,55.4301504,0
+                11.5554716,55.430155,0
+                11.5554609,55.4302143,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>SH Kostafdeling</name>
+        <styleUrl>#poly-1A237E-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5548976,55.4301489,0
+                11.554895,55.4302022,0
+                11.5547152,55.4301976,0
+                11.5547179,55.4301459,0
+                11.5548976,55.4301489,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>SH Kostafdeling</name>
+        <styleUrl>#poly-1A237E-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5554609,55.4301017,0
+                11.5547233,55.4300956,0
+                11.5547287,55.4300439,0
+                11.5554636,55.430053,0
+                11.5554609,55.4301017,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>SH Fællesareal og -køkken</name>
+        <styleUrl>#poly-1A237E-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5547179,55.4301459,0
+                11.5547233,55.4300956,0
+                11.5554416,55.4301063,0
+                11.5554389,55.4301519,0
+                11.5547179,55.4301459,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>SH Fællesstue</name>
+        <styleUrl>#poly-1A237E-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5551023,55.4302075,0
+                11.554895,55.4302022,0
+                11.5548976,55.4301489,0
+                11.5551063,55.4301504,0
+                11.5551023,55.4302075,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Bagbygningen [BAG]</name>
+        <description>3.g bolig.</description>
+        <styleUrl>#poly-E65100-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5550576,55.4297563,0
+                11.555059,55.4299207,0
+                11.5544649,55.4299077,0
+                11.5544514,55.4299656,0
+                11.5543281,55.429964,0
+                11.5543442,55.4298179,0
+                11.554827,55.4298423,0
+                11.554835,55.429757,0
+                11.5550576,55.4297563,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Forbygningen [FOR]</name>
+        <description>3.g bolig.</description>
+        <styleUrl>#poly-E65100-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.555637,55.4299282,0
+                11.5554332,55.4299236,0
+                11.5554345,55.429763,0
+                11.5551851,55.4297638,0
+                11.5551824,55.4297455,0
+                11.5548873,55.4297372,0
+                11.5548887,55.4296793,0
+                11.5550496,55.4296801,0
+                11.5550456,55.4296687,0
+                11.5556544,55.4296748,0
+                11.555637,55.4299282,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Spisesalen</name>
+        <description>Her spises morgenmad, frokost og aftensmad. Mad tages fra Buffeten / Wilsters stue, og så sætter man sig til bords efter årgang. Ligger i stueetagen.</description>
+        <styleUrl>#poly-FFFFFF-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.556999,55.4296109,0
+                11.55701,55.4294735,0
+                11.5571842,55.4294769,0
+                11.5571668,55.4296147,0
+                11.556999,55.4296109,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Buffet / Wilsters stue</name>
+        <description>Her tages der mad inden man tager ind i Spisesalen</description>
+        <styleUrl>#poly-FFFFFF-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5571668,55.4296147,0
+                11.5571583,55.429666,0
+                11.5570845,55.4296645,0
+                11.5570899,55.4296127,0
+                11.5571668,55.4296147,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Hovedbygningen [HB]: Generelt</name>
+      <Placemark>
+        <name>Hovedbygningen [HB]</name>
+        <description>Størstedelen af alle skolens lokaler er her. Spisesalen ligger i stueetagen ved Elevtrappen. De nummererede lokaler (01, 02 ... 29) ligger her. Første cifre betegner etage (0 = stueetage, 1 = 1. sal, 2 = 2. sal). Andet cifre betegner det enkelte lokale. De lavere tal i anden cifre betegner lokalerne i Elevtrappen-enden. De højere tal i anden cifre betegner lokalerne i Lærertrappen-enden. </description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5569698,55.4296646,0
+                11.5569604,55.4297498,0
+                11.5571562,55.4297551,0
+                11.5571924,55.4294751,0
+                11.5570006,55.4294674,0
+                11.556994,55.4295557,0
+                11.5563878,55.4295314,0
+                11.5563905,55.4294477,0
+                11.5562081,55.4294409,0
+                11.5561732,55.4297209,0
+                11.5563636,55.4297308,0
+                11.5563744,55.4296425,0
+                11.556943,55.429663,0
+                11.556943,55.4296684,0
+                11.5563851,55.4296501,0
+                11.5563744,55.4297369,0
+                11.5561638,55.4297285,0
+                11.5561982,55.4294357,0
+                11.556398,55.429444,0
+                11.5563967,55.4295269,0
+                11.5569841,55.4295505,0
+                11.5569908,55.4294615,0
+                11.5571986,55.4294699,0
+                11.5571625,55.4297598,0
+                11.5569532,55.4297545,0
+                11.55696,55.429664,0
+                11.5569698,55.4296646,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>HB Hovedindgang</name>
+        <description>Den eneste åbne indgang til Hovedbygningen. Resten er kun udgange. HB Sideudgang kan bruges i tilfælde af specialnøgle ved skader (Elevator).</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5566894,55.4296536,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HB Sideudgang</name>
+        <description>Kan ikke åbnes udefra uden specialnøgle. Kan altid bruges som udvej. Er direkte forbundet med Elevtrappen. Er også direkte forbundet med elevator. Elevatoradgang kræver også specialnøgle fra kontoret. </description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5570964,55.4297535,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HB Elevator</name>
+        <description>Der skal bruges specialnøgle fra kontoret til at få adgang. Specialnøgle udleveres til forhindrede individer, i hvilke tilfælde de ikke kan benytte trapperne. Specialnøgle åbner også HB Sideudgang, der er direkte forbundet til elevatoren, så der ikke kræves opstigning uden elevator på noget tidspunkt. Elevator går fra kælder til 2. sal.</description>
+        <styleUrl>#icon-1782-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.557134,55.4297189,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HB Elevtrappen</name>
+        <description>Trappe opgang fra kælder til og med loftet. Forbinder alle etager i Hovedbygningen. </description>
+        <styleUrl>#icon-1877-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5570725,55.4297025,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HB Lærertrappen</name>
+        <description>Forbinder stuetage til og med loft.</description>
+        <styleUrl>#icon-1877-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5562841,55.4296732,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Stengangen</name>
+        <description>Stueetage. Forbinder Spisesalen, Elevtrappen, Lærertrappen, lokalerne med 0 i første cifre, kontoret og Vestibulen.</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5569614,55.4296567,0
+                11.5563794,55.4296369,0
+                11.5563874,55.4295996,0
+                11.5569708,55.4296209,0
+                11.5569614,55.4296567,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Festsalen [FE]</name>
+        <description>Festsalen benyttes til ballerne, fællesarrangementer og Les Lanciers efter aftensmad på særlige helligdage.</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5571797,55.429609,0
+                11.557012,55.4296029,0
+                11.5570201,55.429466,0
+                11.557189,55.4294705,0
+                11.5571797,55.429609,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Kontoret</name>
+        <description>Stueetagen. Her finder du sekretariatet og ledelsen, og du kan altid spørge om hjælp her ift. f.eks. administrative ting om f.eks. gymnasiet o.l. </description>
+        <styleUrl>#icon-1548-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5562494,55.4295097,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Grønne sal</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1891-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5568933,55.4295855,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Gule sal</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1891-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5566894,55.4295788,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Vestibulen</name>
+        <description>Gammelt modtagelsesrum. Bruges nu til frilæsning. Her finder du Tabula Sorana.</description>
+        <styleUrl>#icon-1724-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5566864,55.4296005,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Undervisningslokalerne</name>
+      <Placemark>
+        <name>SH1</name>
+        <styleUrl>#icon-1726-BDBDBD-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5546231,55.430174,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>SH2</name>
+        <styleUrl>#icon-1726-BDBDBD-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5547869,55.4301773,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mediefag</name>
+        <styleUrl>#icon-1726-BDBDBD-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5546126,55.4300641,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NAT 1.1</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5592153,55.4301302,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NAT 1.2</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5590973,55.4302123,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NAT 2.2</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5591497,55.4302321,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NAT 2.1</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5592596,55.4301552,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Foodlab</name>
+        <description>Indgang via NAT 1.1</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.559337,55.430102,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-Mohr</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5597944,55.4298238,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-Worm</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5598731,55.429786,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-Bohr</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5599523,55.4297404,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-Rømer</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.560018,55.4297031,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-Krogh</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5598442,55.4298467,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-Jerne</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5599192,55.4298109,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-Dam</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5599998,55.4297668,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-Thomsen</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5600721,55.4297242,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC-La Cour</name>
+        <description>1. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5596752,55.4298003,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 01</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5569358,55.4296063,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 02</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5568365,55.4296033,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 03</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5565732,55.4295948,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 04</name>
+        <description>Stueetage</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5564485,55.4295901,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 20</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5571446,55.4295906,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 21</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5571446,55.4295489,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 22</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.557111,55.4295131,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 23</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.556983,55.4295685,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 24</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5568409,55.4295655,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 25</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5566919,55.4295585,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 26</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5565443,55.4295548,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 27</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5563835,55.4295506,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 28</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5563178,55.4294944,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LOK 29</name>
+        <description>2. sal</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5562587,55.4295682,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AG1</name>
+        <description>Musik</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.55812,55.4302031,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AG2</name>
+        <description>Musik</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5582001,55.4301478,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AG3</name>
+        <description>Musik</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5582873,55.4300778,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AG4</name>
+        <description>Musik</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5583829,55.4300093,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AG5</name>
+        <description>Dramatik</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5583265,55.4299136,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AG6</name>
+        <description>Billedkunst</description>
+        <styleUrl>#icon-1726-BDBDBD-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5580851,55.4299094,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>[SH], [BIB], Bogdepotet og [IN]</name>
+      <Placemark>
+        <name>Skjalm Hvide [SH]</name>
+        <description>2.g og 3.g bolig. Kostafdeling på 1. sal. Vaskerum i kælderen. </description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5554663,55.430225,0
+                11.5554689,55.4302372,0
+                11.5544524,55.4302219,0
+                11.5544578,55.4300241,0
+                11.5555119,55.4300317,0
+                11.5555172,55.4302265,0
+                11.555485,55.430225,0
+                11.5554904,55.4300454,0
+                11.5544765,55.4300348,0
+                11.5544712,55.4302067,0
+                11.5554663,55.430225,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Kantinen [KAN]</name>
+        <description>Samlingssted i SH. Kaldes Kanni</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5554693,55.4302051,0
+                11.5550146,55.430199,0
+                11.5550213,55.4301031,0
+                11.5553714,55.4301062,0
+                11.55537,55.4301594,0
+                11.5554693,55.4301609,0
+                11.5554693,55.4302051,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>SH Indgang 1</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5554716,55.4301321,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>SH Indgang 2</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5545023,55.4301146,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>SH Trappeopgang</name>
+        <description>Nedgang til Vaskekælderen. Opgang til kostafdelingen.</description>
+        <styleUrl>#icon-1877-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5553697,55.4301322,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Biblioteket [BIB]</name>
+        <description>Ikke altid åbent. </description>
+        <styleUrl>#line-000000-1200</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            11.556035,55.4311506,0
+            11.5560564,55.4310479,0
+            11.5565701,55.4310761,0
+            11.556558,55.4311796,0
+            11.5560497,55.4311506,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>BIB Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5561075,55.4310514,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bogdepot</name>
+        <description>Her hentes og afleveres skolebøger. Ligger i kælderen. Adgang til kælder via Elevtrappeopgangen.</description>
+        <styleUrl>#icon-1664-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.556282,55.4295218,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Ingemanns hus [IN]</name>
+        <description>Studievejlederne</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5574765,55.4294811,0
+                11.5574757,55.4294865,0
+                11.5572115,55.4294766,0
+                11.5572169,55.4293967,0
+                11.5574958,55.4293998,0
+                11.5574904,55.4294743,0
+                11.5574797,55.4294743,0
+                11.5574878,55.4294058,0
+                11.5572209,55.4294013,0
+                11.5572169,55.4294736,0
+                11.5574765,55.4294811,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>[VC], [NAT] og [AG]</name>
+      <Placemark>
+        <name>Videnscentret / Astra [VC]</name>
+        <description>Naturfaglig / matematik bygning. Deles med Sciencetalenter og Astra. </description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5595852,55.4298471,0
+                11.55973,55.4298776,0
+                11.5599232,55.4298608,0
+                11.56006,55.4297893,0
+                11.5601002,55.4296965,0
+                11.5600707,55.4296051,0
+                11.5599661,55.4295534,0
+                11.559832,55.4295367,0
+                11.5597059,55.4295443,0
+                11.5595664,55.429596,0
+                11.5594967,55.4296599,0
+                11.5594886,55.4297238,0
+                11.5595235,55.4297908,0
+                11.5595798,55.4298372,0
+                11.5595704,55.4298403,0
+                11.5595181,55.4297916,0
+                11.5594806,55.4297223,0
+                11.55949,55.4296576,0
+                11.5595624,55.4295914,0
+                11.5597005,55.4295397,0
+                11.5598373,55.4295313,0
+                11.5599661,55.4295496,0
+                11.5600774,55.4296036,0
+                11.5601082,55.4296957,0
+                11.5600693,55.4297908,0
+                11.5599285,55.4298646,0
+                11.5597287,55.4298814,0
+                11.5595798,55.4298525,0
+                11.5595852,55.4298471,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>VC Indgang</name>
+        <description>Bygningens eneste rigtige indgang.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5594913,55.4297778,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC Udgang</name>
+        <description>Kan ikke åbnes udefra.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5596639,55.4298603,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC Udgang 1. sal</name>
+        <description>Udgang fra 1. sal, med trappe ned. Kan ikke åbnes udefra.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.559558,55.4298283,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC Elevator</name>
+        <description>Kælder til og med 1. sal.</description>
+        <styleUrl>#icon-1782-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5598513,55.4296296,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC Trappeopgang 2</name>
+        <description>Forbinder kælder til og med taget.</description>
+        <styleUrl>#icon-1877-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5598413,55.4295691,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC Trappeopgang 1</name>
+        <description>Forbinder kælder til og med 1. sal.</description>
+        <styleUrl>#icon-1877-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5598144,55.4296916,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Auditoriet [VC-Lehmann]</name>
+        <description>Bruges til foredrag og fremvisninger. Indgang til lokalet er ved første dør til venstre efter VC Indgang.</description>
+        <styleUrl>#icon-1614-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5596645,55.429766,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Sciencetalenterne</name>
+        <description>Del af Astra. Kan kun benyttes af Sciencetalenterne og Astra personale.</description>
+        <styleUrl>#line-000000-1200</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            11.5588725,55.4303956,0
+            11.558674,55.4302997,0
+            11.5581536,55.4306787,0
+            11.5582448,55.4307167,0
+            11.5585372,55.4306422,0
+            11.5588698,55.4304078,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Naturvidenskabelig bygning [NAT]</name>
+        <styleUrl>#line-000000-1200-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            11.5590799,55.4303638,0
+            11.5589002,55.4302786,0
+            11.5589807,55.4302131,0
+            11.5590048,55.4302222,0
+            11.5591765,55.4300883,0
+            11.5591497,55.4300746,0
+            11.5592435,55.4300137,0
+            11.5594393,55.430099,0
+            11.5593642,55.4301538,0
+            11.5593455,55.4301462,0
+            11.5591523,55.4302846,0
+            11.5591792,55.4302983,0
+            11.559096,55.4303531,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>NAT Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5590723,55.4301636,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NAT Elevator</name>
+        <description>Forbinder kælder til og med 1. sal.</description>
+        <styleUrl>#icon-1782-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5591121,55.430185,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NAT Trappeopgang</name>
+        <description>Forbinder kælder til og med 1. sal</description>
+        <styleUrl>#icon-1877-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5592132,55.4302068,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Avlsgården [AG]</name>
+        <description>Er under ombygning. Bruges indtil videre til lokaler for nogle af de kreative fag.</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5576773,55.42985,0
+                11.5576769,55.4298454,0
+                11.5586407,55.4298871,0
+                11.5580628,55.430307,0
+                11.5575041,55.4301842,0
+                11.5575095,55.4301408,0
+                11.5574143,55.4301287,0
+                11.5574211,55.429968,0
+                11.5576612,55.4299748,0
+                11.5576679,55.4298576,0
+                11.5576773,55.4298576,0
+                11.5576693,55.4299809,0
+                11.5574279,55.4299733,0
+                11.5574198,55.430127,0
+                11.5575164,55.4301377,0
+                11.557511,55.4301818,0
+                11.5580609,55.4303035,0
+                11.5586295,55.4298911,0
+                11.5576773,55.42985,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>AG Indgang Midlertidig</name>
+        <description>Estimeret lokation. Midlertidig adgang under konstruktionen af AG Forsamlingscentrum</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.558045,55.4298553,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Akademigrunden generelt / Mindesmærker</name>
+      <Placemark>
+        <name>Store Plads</name>
+        <styleUrl>#poly-AFB42B-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5550518,55.4308766,0
+                11.5543866,55.4308797,0
+                11.5543866,55.4303835,0
+                11.5545958,55.4302466,0
+                11.5554058,55.4302587,0
+                11.5556097,55.430414,0
+                11.5556096,55.4306697,0
+                11.5554112,55.430834,0
+                11.5550518,55.4308766,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Grønne Plads</name>
+        <styleUrl>#poly-AFB42B-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5571263,55.4293515,0
+                11.5561205,55.4293165,0
+                11.5561312,55.4290988,0
+                11.5562332,55.4291034,0
+                11.5562654,55.4290121,0
+                11.556362,55.428961,0
+                11.5565028,55.4289268,0
+                11.5566342,55.4289161,0
+                11.5567657,55.4289283,0
+                11.5568756,55.4289686,0
+                11.5569641,55.4290105,0
+                11.5570097,55.4290805,0
+                11.5570138,55.4291315,0
+                11.5571425,55.4291314,0
+                11.5571263,55.4293515,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Rektorhaven</name>
+        <styleUrl>#poly-AFB42B-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5555794,55.4296663,0
+                11.554882,55.4296602,0
+                11.5548605,55.4297378,0
+                11.5545145,55.4297287,0
+                11.5545977,55.4293969,0
+                11.5551448,55.4294091,0
+                11.5552521,55.4294532,0
+                11.5556035,55.4294654,0
+                11.5555794,55.4296663,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Ludvig Holberg-statuen</name>
+        <styleUrl>#icon-1599-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5527104,55.4306065,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kinahøjen / Den gamle Friluftsscene</name>
+        <description>Gammelt udendørsteater.</description>
+        <styleUrl>#icon-1709-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5522926,55.4289714,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hauch-statue</name>
+        <styleUrl>#icon-1599-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5530108,55.4288381,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Vildtplænen</name>
+        <description>Må ikke betrædes eller plukkes.</description>
+        <styleUrl>#icon-1886-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5519206,55.4306807,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Stiftelsen Sorø Akademi</name>
+        <description>Herunder også Hauchs Physiske Kabinet.</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5519197,55.4318881,0
+                11.5515979,55.4319155,0
+                11.5515791,55.4318546,0
+                11.5516166,55.4318485,0
+                11.5515496,55.4316324,0
+                11.5515737,55.4316065,0
+                11.551681,55.4315944,0
+                11.5517293,55.4316035,0
+                11.5518044,55.4318028,0
+                11.55185,55.4318196,0
+                11.5519144,55.431815,0
+                11.5519197,55.4318881,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Café Skjalms Have</name>
+        <description>Ingen relation til Sorø Akademi; for sig selv.</description>
+        <styleUrl>#icon-1534-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5555629,55.4293642,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Villereden</name>
+        <description>Undervisningsministerens æresbolig.</description>
+        <styleUrl>#icon-1603-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5519243,55.4320809,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Molbechs hus [MO]</name>
+        <description>Nuværende personalebolig.</description>
+        <styleUrl>#icon-1603-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5559162,55.4293928,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>T-broen</name>
+        <description>Badebro.</description>
+        <styleUrl>#icon-1521-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5501233,55.4309769,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Lille Klaus' bro]]></name>
+        <description>Dok for Lille Klaus (Rundtursbåd for Sorø Sø)</description>
+        <styleUrl>#icon-1521-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5491063,55.432651,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Badebro</name>
+        <styleUrl>#icon-1521-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5495266,55.4320334,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Broen ved VC</name>
+        <styleUrl>#icon-1521-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5601734,55.4289751,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kajakbroen</name>
+        <styleUrl>#icon-1521-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5527483,55.4282677,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Klosterkirken og kirkegården</name>
+        <description>Benyttes generelt ikke af skolen. Klosterkirken benyttes til dimission og juleafslutning. </description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5580481,55.4303071,0
+                11.557488,55.430185,0
+                11.5574849,55.4301457,0
+                11.5574098,55.4301336,0
+                11.5574165,55.429976,0
+                11.5570758,55.4299654,0
+                11.5570839,55.4299106,0
+                11.5568666,55.4299045,0
+                11.5568639,55.4299989,0
+                11.5561371,55.4299776,0
+                11.5560271,55.4307659,0
+                11.5564965,55.4307857,0
+                11.5564884,55.4308466,0
+                11.5567057,55.4308572,0
+                11.5567191,55.4307918,0
+                11.5573146,55.4308192,0
+                11.558028,55.4303139,0
+                11.5580401,55.430317,0
+                11.5573159,55.4308215,0
+                11.5567231,55.4307941,0
+                11.556707,55.4308595,0
+                11.5564817,55.4308489,0
+                11.5564898,55.430788,0
+                11.5560204,55.4307682,0
+                11.556133,55.4299738,0
+                11.5568532,55.4299943,0
+                11.5568612,55.4298977,0
+                11.5570986,55.4299068,0
+                11.5570852,55.4299601,0
+                11.5574211,55.429968,0
+                11.5574143,55.4301287,0
+                11.5574974,55.4301431,0
+                11.5575041,55.4301842,0
+                11.5580609,55.4303035,0
+                11.5580481,55.4303071,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Klosterkirken</name>
+        <styleUrl>#poly-000000-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5572803,55.43006,0
+                11.5572723,55.4301817,0
+                11.5570979,55.4301802,0
+                11.5570899,55.4302654,0
+                11.5570121,55.43027,0
+                11.5570094,55.4303035,0
+                11.5568753,55.4303035,0
+                11.5568807,55.4302685,0
+                11.55676,55.4302639,0
+                11.5567573,55.4302152,0
+                11.5561162,55.430197,0
+                11.5561371,55.4299776,0
+                11.5568639,55.4299989,0
+                11.556876,55.4299098,0
+                11.5570563,55.4299146,0
+                11.5570584,55.4299692,0
+                11.5571542,55.4299717,0
+                11.5571516,55.4300523,0
+                11.5572803,55.43006,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Klosterkirken Indgang</name>
+        <description>Ikke altid åben.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5561297,55.4300852,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Sorø Gamle Kirkegård</name>
+        <styleUrl>#poly-AFB42B-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5572977,55.4300665,0
+                11.557409,55.4301395,0
+                11.5574761,55.4301494,0
+                11.5574841,55.4301921,0
+                11.558028,55.4303139,0
+                11.5572951,55.4308077,0
+                11.5560398,55.4307559,0
+                11.5561162,55.430197,0
+                11.5567489,55.4302189,0
+                11.5567516,55.4302676,0
+                11.5568713,55.4302715,0
+                11.5568683,55.4303102,0
+                11.5570131,55.4303094,0
+                11.5570212,55.4302729,0
+                11.5571003,55.4302691,0
+                11.557107,55.4301869,0
+                11.5572773,55.4301915,0
+                11.5572977,55.4300665,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Fraterbrønden</name>
+        <styleUrl>#icon-1580-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5565348,55.4298421,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Fratergården</name>
+        <styleUrl>#poly-000000-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5568633,55.4296686,0
+                11.5568097,55.4299943,0
+                11.5562196,55.429973,0
+                11.5562438,55.4297386,0
+                11.5563832,55.4297424,0
+                11.556394,55.4296557,0
+                11.5568633,55.4296686,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Klosterporten</name>
+        <styleUrl>#icon-1598-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5556966,55.4310991,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Ingemanns Ø</name>
+        <styleUrl>#icon-1634-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5578202,55.4281574,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flommen</name>
+        <description>Kan bruges til skøjtning ved overfrysning om vinteren.</description>
+        <styleUrl>#icon-1873-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5715794,55.4305959,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Parnas</name>
+        <description>Består af park og badebro</description>
+        <styleUrl>#icon-1521-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5375895,55.4249776,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Munkedam</name>
+        <description>Her overnatter man til introforløbet i grundforløbet.</description>
+        <styleUrl>#icon-1764-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5864416,55.377257,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bøgeholm</name>
+        <styleUrl>#icon-1634-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5425251,55.4240954,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Idræt: [HAL], [GYM] og Udendørs</name>
+      <Placemark>
+        <name>Hallen [HAL]</name>
+        <description>Idrætshallen.</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5527712,55.4315453,0
+                11.5527739,55.431352,0
+                11.5534579,55.4313505,0
+                11.5534525,55.4315453,0
+                11.5527712,55.4315453,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>HAL Indgang</name>
+        <description>Skal åbnes af kostlærer udenfor skoletiden, ellers ved særlige tilladelser. Den eneste rigtige indgang til bygningen.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5534525,55.4314464,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HAL Sideudgang 1</name>
+        <description>Kan ikke åbnes udefra. Udgang direkte fra Hallen.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5532996,55.4313475,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HAL Sideudgang 2</name>
+        <description>Kan ikke åbnes udefra. Udgang direkte fra Hallen.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5528678,55.4313505,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HAL Sideudgang 3</name>
+        <description>Kan ikke åbnes udefra. Udgang direkte fra Hallen.</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5528705,55.4315438,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Gymnastiksalen [GYM]</name>
+        <description>Er en gymnastiksal med omklædning og bad. For at benytte salen i sin fritid, skal man have den åbnet af en kostlærer. For at finde det populære fritidsfitnesslokale (gym), søg efter Fitness [Sty.tr].</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5551203,55.4310043,0
+                11.5551042,55.4311474,0
+                11.5547635,55.4311352,0
+                11.5547662,55.4310667,0
+                11.5544551,55.4310576,0
+                11.5544578,55.4309952,0
+                11.5551203,55.4310043,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>GYM Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5545597,55.4309922,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>GYM Udgang</name>
+        <description>Bruges generelt ikke. Brug i stedet GYM Indgang</description>
+        <styleUrl>#icon-1783-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5549379,55.4309982,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Fitness [Sty.tr.]</name>
+        <description>Dette lokale er et gym / fitness-lokale, der kan benyttes frit udenfor skoletiden. Du skal have tilladelse og underskrive et dokument for at få nøgleadgang og tilladelse til at bruge rummet frit. Oftest sker dette i starten af skoleåret.</description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5553932,55.4310855,0
+                11.555133,55.4310794,0
+                11.5551384,55.4310186,0
+                11.5553959,55.4310246,0
+                11.5553932,55.4310855,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Sty.tr. / Fitness Indgang</name>
+        <styleUrl>#icon-1783-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5552685,55.4310239,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Stadion / Udendørs idrætsanlæg [Stadion]</name>
+        <description>Offentligt idrætsanlæg. Kan benyttes frit til enhver tid. </description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                11.5518382,55.4323554,0
+                11.5520957,55.4328728,0
+                11.5529647,55.4327633,0
+                11.5532544,55.4334755,0
+                11.552954,55.4335059,0
+                11.5532115,55.4341694,0
+                11.5488601,55.4347951,0
+                11.5482949,55.4341476,0
+                11.5481983,55.4335146,0
+                11.5486382,55.4331128,0
+                11.5497111,55.4329424,0
+                11.5509342,55.433198,0
+                11.5507732,55.4327354,0
+                11.5511487,55.4326502,0
+                11.5510752,55.4324764,0
+                11.5518048,55.4323608,0
+                11.5518098,55.4323709,0
+                11.5510856,55.4324812,0
+                11.5511701,55.4326578,0
+                11.5508053,55.432743,0
+                11.5509609,55.4332117,0
+                11.5497078,55.4329519,0
+                11.5486457,55.4331254,0
+                11.5482165,55.4335211,0
+                11.5482999,55.4341456,0
+                11.5488675,55.434785,0
+                11.5531929,55.4341592,0
+                11.55293,55.4334866,0
+                11.5532358,55.4334561,0
+                11.5529468,55.4327846,0
+                11.5520777,55.4328942,0
+                11.5518245,55.4323597,0
+                11.5518382,55.4323554,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Cricketbanen</name>
+        <styleUrl>#icon-1554-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5496296,55.4338335,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Fodbold- og atletikbanen (Udendørs)</name>
+        <styleUrl>#icon-1696-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5518352,55.4335667,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tennisbanerne</name>
+        <styleUrl>#icon-1707-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5528193,55.4331691,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Volleyballbanen (Udendørs)</name>
+        <description>Nuværende er den ikke i brugbar stand.</description>
+        <styleUrl>#icon-1890-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5514348,55.4325528,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Cricketburene</name>
+        <description>Battingbur. Kan i princippet benyttes til andre batsports, såsom baseball og softball.</description>
+        <styleUrl>#icon-1554-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5528467,55.4336203,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kano- og kajakdokken</name>
+        <description>Huset opbevarer kanoerne og kajakkerne. Kan bruges til idræt. Man kan, efter man har bestået kæntringsøvelsen, benytte sig af bådene i sin fritid ( Før mørkets frembrud og når vandet ikke er for koldt ). Kontakt kostlærer for at åbne her.</description>
+        <styleUrl>#icon-1536-000000-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            11.5527322,55.4283803,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Transportmuligheder</name>
+      <Placemark>
+        <name>Sorø Akademi (Priorgade)</name>
+        <description>Busstopsted. Buslinjerne, der kører mod Sorø Station, stopper her.</description>
+        <styleUrl>#icon-1532-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5594097,55.4302592,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Sorø Akademi (Priorgade)</name>
+        <description>Busstopsted. Buslinjerne, der kører væk fra Sorø Station, stopper her.</description>
+        <styleUrl>#icon-1532-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5596351,55.4302988,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Parkering ved Store Plads</name>
+        <styleUrl>#icon-1644-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5552326,55.4308926,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Parkering ved Biblioteket</name>
+        <styleUrl>#icon-1644-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5563484,55.4308804,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Parkering ved Forbygningen</name>
+        <styleUrl>#icon-1644-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5558376,55.4297582,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Parkering ved Ingemanns hus</name>
+        <styleUrl>#icon-1644-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5574308,55.4296608,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Toiletter, Omklædningsrum og Vandflaskeopfyldere</name>
+      <Placemark>
+        <name>VC Toiletter</name>
+        <description>Stueetage + 1. sal</description>
+        <styleUrl>#icon-1733-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5599079,55.4296632,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NAT Toiletter</name>
+        <description>Kælderen</description>
+        <styleUrl>#icon-1733-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5591555,55.4301771,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AG Toiletter</name>
+        <styleUrl>#icon-1733-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5575446,55.4299937,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HB Toiletter</name>
+        <description>Stueetage og 2. sal</description>
+        <styleUrl>#icon-1733-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5571353,55.4296861,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>SH Toiletter</name>
+        <styleUrl>#icon-1733-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.5547372,55.4300628,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>GYM Omklædningsrum</name>
+        <description>Der er også toiletter her.</description>
+        <styleUrl>#icon-1865-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5546207,55.4310351,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HAL Omklædningsrum</name>
+        <description>Der er også toiletter her.</description>
+        <styleUrl>#icon-1865-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5534057,55.4314478,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HAL Toiletter Sideudgang</name>
+        <styleUrl>#icon-1733-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            11.553328,55.431339,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>VC Vandautomat</name>
+        <description>Ligger i kælderen</description>
+        <styleUrl>#icon-1703-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5597903,55.4295882,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HB Vandautomat</name>
+        <description>Stueetage, overfor Wilsters stue</description>
+        <styleUrl>#icon-1703-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5570107,55.4296757,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>SH Vandautomat</name>
+        <description>Står i Kantinen</description>
+        <styleUrl>#icon-1703-000000</styleUrl>
+        <Point>
+          <coordinates>
+            11.5552474,55.4300953,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
