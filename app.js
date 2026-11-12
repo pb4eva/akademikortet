@@ -68,9 +68,9 @@ const lightBaseUrl = String.fromCharCode(
   105,108,101,47,123,122,125,47,123,121,125,47,123,120,125
 );
 
-const darkBaseLayer = createTile(darkBaseUrl, { maxZoom: 19 });
-const darkLabelsLayer = createTile(darkLabelsUrl, { maxZoom: 19 });
-const lightBaseLayer = createTile(lightBaseUrl, { maxZoom: 19 });
+const darkBaseLayer = createTile(darkBaseUrl, { maxZoom: 20, maxNativeZoom: 16 });
+const darkLabelsLayer = createTile(darkLabelsUrl, { maxZoom: 20, maxNativeZoom: 16 });
+const lightBaseLayer = createTile(lightBaseUrl, { maxZoom: 20, maxNativeZoom: 16 });
 
 darkBaseLayer.addTo(map);
 darkLabelsLayer.addTo(map);
