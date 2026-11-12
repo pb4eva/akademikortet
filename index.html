@@ -163,6 +163,27 @@
     body.dark-map .leaflet-tile-pane {
       filter: grayscale(100%) invert(94%) contrast(88%) brightness(92%);
     }
+        /* Circular Liquid Glass Action Buttons */
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      font-size: 16px;
+    }
+    .icon-btn.active {
+      background: rgba(10, 132, 255, 0.55);
+      border-color: rgba(100, 180, 255, 0.75);
+    }
   </style>
 </head>
 <body>
