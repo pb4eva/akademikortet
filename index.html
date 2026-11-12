@@ -8,8 +8,8 @@
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
       position: fixed;
       inset: 0;
@@ -20,13 +20,13 @@
       color: #fff;
     }
 
-    /* Fixed Inset Map Frame (Prevents 0px Height Collapse) */
+    /* Full-Viewport Map with Safe-Area Rounded Frame */
     #map {
       position: fixed;
-      top: env(safe-area-inset-top);
-      right: env(safe-area-inset-right);
-      bottom: env(safe-area-inset-bottom);
-      left: env(safe-area-inset-left);
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       border-radius: 20px;
       overflow: hidden;
       z-index: 1;
@@ -178,7 +178,7 @@
     const map = L.map('map', { zoomControl: false }).setView([55.6761, 12.5683], 11);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    setTimeout(() => { map.invalidateSize(); }, 200);
+    setTimeout(() => { map.invalidateSize(); }, 250);
 
     const palette = ['#0a84ff', '#30d158', '#ff9f0a', '#ff375f', '#bf5af2', '#64d2ff', '#ffd60a', '#ff453a', '#5e5ce6', '#32ade6'];
     const allPins = [];
@@ -189,8 +189,8 @@
       return coordText.trim().split(/\s+/).map(pair => {
         const parts = pair.split(',');
         if (parts.length >= 2) {
-          const lng = parseFloat(parts);
-          const lat = parseFloat(parts);
+          const lng = parseFloat(parts[0]);
+          const lat = parseFloat(parts[1]);
           if (!isNaN(lat) && !isNaN(lng)) return [lat, lng];
         }
         return null;
@@ -223,8 +223,8 @@
           layerColors[layerName] = color;
 
           placemarks.forEach(pm => {
-            const titleNode = pm.getElementsByTagName('name');
-            const descNode = pm.getElementsByTagName('description');
+            const titleNode = pm.getElementsByTagName('name')[0];
+            const descNode = pm.getElementsByTagName('description')[0];
             const title = titleNode ? titleNode.textContent.trim() : 'Unnamed Pin';
             const desc = descNode ? descNode.textContent.trim() : '';
 
@@ -234,16 +234,16 @@
               <div style="font-size:13px;line-height:1.35;">${desc}</div>
             `;
 
-            const pointNode = pm.getElementsByTagName('Point');
-            const lineNode = pm.getElementsByTagName('LineString');
-            const polyNode = pm.getElementsByTagName('Polygon');
+            const pointNode = pm.getElementsByTagName('Point')[0];
+            const lineNode = pm.getElementsByTagName('LineString')[0];
+            const polyNode = pm.getElementsByTagName('Polygon')[0];
 
             if (pointNode) {
-              const coordNode = pointNode.getElementsByTagName('coordinates');
+              const coordNode = pointNode.getElementsByTagName('coordinates')[0];
               if (coordNode) {
                 const coords = parseCoords(coordNode.textContent);
                 if (coords.length > 0) {
-                  const ll = L.latLng(coords, coords);
+                  const ll = L.latLng(coords[0][0], coords[0][1]);
                   const marker = L.circleMarker(ll, {
                     radius: 8,
                     fillColor: color,
@@ -258,7 +258,7 @@
                 }
               }
             } else if (lineNode) {
-              const coordNode = lineNode.getElementsByTagName('coordinates');
+              const coordNode = lineNode.getElementsByTagName('coordinates')[0];
               if (coordNode) {
                 const coords = parseCoords(coordNode.textContent);
                 if (coords.length > 0) {
@@ -268,7 +268,7 @@
                 }
               }
             } else if (polyNode) {
-              const coordNode = polyNode.getElementsByTagName('coordinates');
+              const coordNode = polyNode.getElementsByTagName('coordinates')[0];
               if (coordNode) {
                 const coords = parseCoords(coordNode.textContent);
                 if (coords.length > 0) {
@@ -283,7 +283,7 @@
 
         map.invalidateSize();
         if (bounds.isValid()) {
-          map.fitBounds(bounds, { padding: });
+          map.fitBounds(bounds, { padding: [40, 40] });
         }
 document.getElementById('layersBtn').textContent = Layers (${Object.keys(layerGroups).length});
 buildLayerDrawer();
