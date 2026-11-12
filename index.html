@@ -2,11 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-    <link rel="stylesheet" href="./leaflet.css" />
-  <script type="module">
-    import * as LModule from './leaflet.js';
-    window.L = LModule.default || LModule;
-  </script>
+  <link rel="stylesheet" href="./leaflet.css" />
   <style>
     html, body {
       margin: 0;
@@ -176,25 +172,28 @@
     <button id="layersBtn" class="layers-btn" onclick="toggleLayers()">Loading...</button>
   </div>
 
-  <script>
+  <script type="module">
+    import * as LModule from './leaflet.js';
+    const L = LModule.default || LModule;
+
     const btn = document.getElementById('layersBtn');
     const allPins = new Array();
     const layerGroups = {};
     const layerColors = {};
     let map;
 
-    function toggleLayers() {
+    window.toggleLayers = function() {
       document.getElementById('searchDrawer').classList.remove('open');
       document.getElementById('layerDrawer').classList.toggle('open');
-    }
+    };
 
-    function toggleSingleLayer(name, visible) {
+    window.toggleSingleLayer = function(name, visible) {
       if (!map) return;
       if (visible) map.addLayer(layerGroups[name]);
       else map.removeLayer(layerGroups[name]);
-    }
+    };
 
-    function goToPin(index) {
+    window.goToPin = function(index) {
       const p = allPins.at(index);
       if (!p || !map) return;
       if (!map.hasLayer(p.group)) map.addLayer(p.group);
@@ -202,107 +201,101 @@
       p.marker.openPopup();
       document.getElementById('searchDrawer').classList.remove('open');
       document.getElementById('searchInput').blur();
-    }
+    };
 
-    window.addEventListener('load', () => {
-      if (typeof L === 'undefined') {
-        btn.textContent = 'Missing leaflet.js';
-        return;
-      }
+    btn.textContent = 'Loading KML...';
+    map = L.map('map', { zoomControl: false }).setView(new Array(55.6761, 12.5683), 11);
 
-      btn.textContent = 'Loading KML...';
-      map = L.map('map', { zoomControl: false }).setView(new Array(55.6761, 12.5683), 11);
+    const tileHost = new Array('a', 'basemaps', 'cartocdn', 'com').join('.');
+    const tileUrl = 'https://' + tileHost + '/dark_all/{z}/{x}/{y}.png';
+    L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map);
 
-      const tileHost = new Array('a', 'basemaps', 'cartocdn', 'com').join('.');
-      const tileUrl = 'https://' + tileHost + '/dark_all/{z}/{x}/{y}.png';
-      L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map);
+    setTimeout(() => { map.invalidateSize(); }, 300);
 
-      setTimeout(() => { map.invalidateSize(); }, 300);
+    const palette = new Array('#0a84ff', '#30d158', '#ff9f0a', '#ff375f', '#bf5af2', '#64d2ff', '#ffd60a', '#ff453a', '#5e5ce6', '#32ade6');
 
-      const palette = new Array('#0a84ff', '#30d158', '#ff9f0a', '#ff375f', '#bf5af2', '#64d2ff', '#ffd60a', '#ff453a', '#5e5ce6', '#32ade6');
-
-      function parseCoords(coordText) {
-        const result = new Array();
-        const pairs = coordText.trim().split(/\s+/);
-        for (let i = 0; i < pairs.length; i++) {
-          const parts = pairs.at(i).split(',');
-          if (parts.length >= 2) {
-            const lng = parseFloat(parts.at(0));
-            const lat = parseFloat(parts.at(1));
-            if (!isNaN(lat) && !isNaN(lng)) {
-              result.push(L.latLng(lat, lng));
-            }
+    function parseCoords(coordText) {
+      const result = new Array();
+      const pairs = coordText.trim().split(/\s+/);
+      for (let i = 0; i < pairs.length; i++) {
+        const parts = pairs.at(i).split(',');
+        if (parts.length >= 2) {
+          const lng = parseFloat(parts.at(0));
+          const lat = parseFloat(parts.at(1));
+          if (!isNaN(lat) && !isNaN(lng)) {
+            result.push(L.latLng(lat, lng));
           }
         }
-        return result;
       }
+      return result;
+    }
 
-      fetch('./map.kml?v=' + Date.now())
-        .then(res => {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          return res.text();
-        })
-        .then(kmlText => {
-          const parser = new DOMParser();
-          const kml = parser.parseFromString(kmlText, 'text/xml');
-          let folders = Array.from(kml.getElementsByTagName('Folder'));
-          if (folders.length === 0) folders = new Array(kml.documentElement);
+    fetch('./map.kml?v=' + Date.now())
+      .then(res => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(kmlText => {
+        const parser = new DOMParser();
+        const kml = parser.parseFromString(kmlText, 'text/xml');
+        let folders = Array.from(kml.getElementsByTagName('Folder'));
+        if (folders.length === 0) folders = new Array(kml.documentElement);
 
-          const bounds = L.latLngBounds();
+        const bounds = L.latLngBounds();
 
-          folders.forEach((folder, idx) => {
-            const placemarks = Array.from(folder.getElementsByTagName('Placemark'));
-            if (placemarks.length === 0) return;
+        folders.forEach((folder, idx) => {
+          const placemarks = Array.from(folder.getElementsByTagName('Placemark'));
+          if (placemarks.length === 0) return;
 
-            const nameNode = Array.from(folder.children).find(el => el.tagName === 'name');
-            const layerName = nameNode ? nameNode.textContent.trim() : `Layer ${idx + 1}`;
-            const color = palette.at(Object.keys(layerGroups).length % palette.length);
-            const group = L.layerGroup().addTo(map);
+          const nameNode = Array.from(folder.children).find(el => el.tagName === 'name');
+          const layerName = nameNode ? nameNode.textContent.trim() : `Layer ${idx + 1}`;
+          const color = palette.at(Object.keys(layerGroups).length % palette.length);
+          const group = L.layerGroup().addTo(map);
 
-            layerGroups[layerName] = group;
-            layerColors[layerName] = color;
+          layerGroups[layerName] = group;
+          layerColors[layerName] = color;
 
-            placemarks.forEach(pm => {
-              const titleNode = pm.getElementsByTagName('name').item(0);
-              const descNode = pm.getElementsByTagName('description').item(0);
-              const title = titleNode ? titleNode.textContent.trim() : 'Unnamed Pin';
-              const desc = descNode ? descNode.textContent.trim() : '';
+          placemarks.forEach(pm => {
+            const titleNode = pm.getElementsByTagName('name').item(0);
+            const descNode = pm.getElementsByTagName('description').item(0);
+            const title = titleNode ? titleNode.textContent.trim() : 'Unnamed Pin';
+            const desc = descNode ? descNode.textContent.trim() : '';
 
-              const popupHtml = `
-                <div style="font-size:14px;font-weight:600;margin-bottom:2px;">${title}</div>
-                <div style="font-size:11px;color:#8e8e93;margin-bottom:4px;">${layerName}</div>
-                <div style="font-size:13px;line-height:1.35;">${desc}</div>
-              `;
+            const popupHtml = `
+              <div style="font-size:14px;font-weight:600;margin-bottom:2px;">${title}</div>
+              <div style="font-size:11px;color:#8e8e93;margin-bottom:4px;">${layerName}</div>
+              <div style="font-size:13px;line-height:1.35;">${desc}</div>
+            `;
 
-              const pointNode = pm.getElementsByTagName('Point').item(0);
-              const lineNode = pm.getElementsByTagName('LineString').item(0);
-              const polyNode = pm.getElementsByTagName('Polygon').item(0);
+            const pointNode = pm.getElementsByTagName('Point').item(0);
+            const lineNode = pm.getElementsByTagName('LineString').item(0);
+            const polyNode = pm.getElementsByTagName('Polygon').item(0);
 
-              if (pointNode) {
-                const coordNode = pointNode.getElementsByTagName('coordinates').item(0);
-                if (coordNode) {
-                  const coords = parseCoords(coordNode.textContent);
-                  if (coords.length > 0) {
-                    const ll = coords.at(0);
-                    const marker = L.circleMarker(ll, {
-                      radius: 8,
-                      fillColor: color,
-                      color: '#ffffff',
-                      weight: 2,
-                      opacity: 1,
-                      fillOpacity: 0.92
-                    }).bindPopup(popupHtml).addTo(group);
+            if (pointNode) {
+              const coordNode = pointNode.getElementsByTagName('coordinates').item(0);
+              if (coordNode) {
+                const coords = parseCoords(coordNode.textContent);
+                if (coords.length > 0) {
+                  const ll = coords.at(0);
+                  const marker = L.circleMarker(ll, {
+                    radius: 8,
+                    fillColor: color,
+                    color: '#ffffff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.92
+                  }).bindPopup(popupHtml).addTo(group);
 
-                    bounds.extend(ll);
-                    allPins.push({ title, desc, layerName, latlng: ll, marker, group });
-                  }
+                  bounds.extend(ll);
+                  allPins.push({ title, desc, layerName, latlng: ll, marker, group });
                 }
-              } else if (lineNode) {
-                const coordNode = lineNode.getElementsByTagName('coordinates').item(0);
-                if (coordNode) {
-const coords = parseCoords(coordNode.textContent);
-if (coords.length > 0) {
-const line = L.polyline(coords, { color: color, weight: 4, opacity: 0.85 }).bindPopup(popupHtml).addTo(group);
+              }
+            } else if (lineNode) {
+              const coordNode = lineNode.getElementsByTagName('coordinates').item(0);
+              if (coordNode) {
+                const coords = parseCoords(coordNode.textContent);
+                if (coords.length > 0) {
+                  const line = L.polyline(coords, { color: color, weight: 4, opacity: 0.85 }).bindPopup(popupHtml).addTo(group);
 bounds.extend(line.getBounds());
 allPins.push({ title, desc, layerName, latlng: line.getBounds().getCenter(), marker: line, group });
 }
@@ -355,7 +348,6 @@ map.on('click', () => {
 searchDrawer.classList.remove('open');
 document.getElementById('layerDrawer').classList.remove('open');
 searchInput.blur();
-});
 });
 document.addEventListener('touchmove', function(e) {
 if (!e.target.closest('.drawer')) {
