@@ -8,29 +8,28 @@
     html, body {
       margin: 0;
       padding: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       position: fixed;
       inset: 0;
       touch-action: none;
       overscroll-behavior: none;
-      background: #000;
+      background: #1c1c1e;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
       color: #fff;
     }
 
-    /* Full-Viewport Map with Safe-Area Rounded Frame */
     #map {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      border-radius: 20px;
-      overflow: hidden;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
       z-index: 1;
-      background: #1c1c1e;
+      background: #2c2c2e;
     }
 
     /* Apple Liquid Glass Material */
@@ -176,9 +175,12 @@
 
   <script>
     const map = L.map('map', { zoomControl: false }).setView([55.6761, 12.5683], 11);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    L.tileLayer('https://{s}://{z}/{x}/{y}{r}.png', {
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
 
-    setTimeout(() => { map.invalidateSize(); }, 250);
+    setTimeout(() => { map.invalidateSize(); }, 300);
 
     const palette = ['#0a84ff', '#30d158', '#ff9f0a', '#ff375f', '#bf5af2', '#64d2ff', '#ffd60a', '#ff453a', '#5e5ce6', '#32ade6'];
     const allPins = [];
@@ -186,15 +188,19 @@
     const layerColors = {};
 
     function parseCoords(coordText) {
-      return coordText.trim().split(/\s+/).map(pair => {
-        const parts = pair.split(',');
+      const result = [];
+      const pairs = coordText.trim().split(/\s+/);
+      for (let i = 0; i < pairs.length; i++) {
+        const parts = pairs[i].split(',');
         if (parts.length >= 2) {
           const lng = parseFloat(parts[0]);
           const lat = parseFloat(parts[1]);
-          if (!isNaN(lat) && !isNaN(lng)) return [lat, lng];
+          if (!isNaN(lat) && !isNaN(lng)) {
+            result.push([lat, lng]);
+          }
         }
-        return null;
-      }).filter(Boolean);
+      }
+      return result;
     }
 
     fetch('map.kml?v=' + Date.now())
@@ -223,10 +229,10 @@
           layerColors[layerName] = color;
 
           placemarks.forEach(pm => {
-            const titleNode = pm.getElementsByTagName('name')[0];
-            const descNode = pm.getElementsByTagName('description')[0];
-            const title = titleNode ? titleNode.textContent.trim() : 'Unnamed Pin';
-            const desc = descNode ? descNode.textContent.trim() : '';
+            const titleNodes = pm.getElementsByTagName('name');
+            const descNodes = pm.getElementsByTagName('description');
+            const title = titleNodes.length > 0 ? titleNodes[0].textContent.trim() : 'Unnamed Pin';
+            const desc = descNodes.length > 0 ? descNodes[0].textContent.trim() : '';
 
             const popupHtml = `
               <div style="font-size:14px;font-weight:600;margin-bottom:2px;">${title}</div>
@@ -234,14 +240,14 @@
               <div style="font-size:13px;line-height:1.35;">${desc}</div>
             `;
 
-            const pointNode = pm.getElementsByTagName('Point')[0];
-            const lineNode = pm.getElementsByTagName('LineString')[0];
-            const polyNode = pm.getElementsByTagName('Polygon')[0];
+            const pointNodes = pm.getElementsByTagName('Point');
+            const lineNodes = pm.getElementsByTagName('LineString');
+            const polyNodes = pm.getElementsByTagName('Polygon');
 
-            if (pointNode) {
-              const coordNode = pointNode.getElementsByTagName('coordinates')[0];
-              if (coordNode) {
-                const coords = parseCoords(coordNode.textContent);
+            if (pointNodes.length > 0) {
+              const coordNodes = pointNodes[0].getElementsByTagName('coordinates');
+              if (coordNodes.length > 0) {
+                const coords = parseCoords(coordNodes[0].textContent);
                 if (coords.length > 0) {
                   const ll = L.latLng(coords[0][0], coords[0][1]);
                   const marker = L.circleMarker(ll, {
@@ -257,20 +263,20 @@
                   allPins.push({ title, desc, layerName, latlng: ll, marker, group });
                 }
               }
-            } else if (lineNode) {
-              const coordNode = lineNode.getElementsByTagName('coordinates')[0];
-              if (coordNode) {
-                const coords = parseCoords(coordNode.textContent);
+            } else if (lineNodes.length > 0) {
+              const coordNodes = lineNodes[0].getElementsByTagName('coordinates');
+              if (coordNodes.length > 0) {
+                const coords = parseCoords(coordNodes[0].textContent);
                 if (coords.length > 0) {
                   const line = L.polyline(coords, { color: color, weight: 4, opacity: 0.85 }).bindPopup(popupHtml).addTo(group);
                   bounds.extend(line.getBounds());
                   allPins.push({ title, desc, layerName, latlng: line.getBounds().getCenter(), marker: line, group });
                 }
               }
-            } else if (polyNode) {
-              const coordNode = polyNode.getElementsByTagName('coordinates')[0];
-              if (coordNode) {
-                const coords = parseCoords(coordNode.textContent);
+            } else if (polyNodes.length > 0) {
+              const coordNodes = polyNodes[0].getElementsByTagName('coordinates');
+              if (coordNodes.length > 0) {
+                const coords = parseCoords(coordNodes[0].textContent);
                 if (coords.length > 0) {
                   const poly = L.polygon(coords, { color: color, weight: 2, fillOpacity: 0.25 }).bindPopup(popupHtml).addTo(group);
                   bounds.extend(poly.getBounds());
@@ -282,9 +288,9 @@
         });
 
         map.invalidateSize();
-        if (bounds.isValid()) {
-          map.fitBounds(bounds, { padding: [40, 40] });
-        }
+if (bounds.isValid()) {
+map.fitBounds(bounds, { padding: [40, 40] });
+}
 document.getElementById('layersBtn').textContent = Layers (${Object.keys(layerGroups).length});
 buildLayerDrawer();
 })
