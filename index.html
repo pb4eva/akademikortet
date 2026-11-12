@@ -169,26 +169,24 @@
 
   <div class="bottom-bar liquid-glass">
     <input id="searchInput" class="search-box" type="search" placeholder="Search pins..." autocomplete="off">
-    <button id="layersBtn" class="layers-btn" onclick="toggleLayers()">Loading...</button>
+    <button id="layersBtn" class="layers-btn">Loading...</button>
   </div>
 
   <script>
     const btn = document.getElementById('layersBtn');
+    const searchDrawer = document.getElementById('searchDrawer');
+    const layerDrawer = document.getElementById('layerDrawer');
+    const searchInput = document.getElementById('searchInput');
+
     const allPins = new Array();
     const layerGroups = {};
     const layerColors = {};
     let map;
 
-    function toggleLayers() {
-      document.getElementById('searchDrawer').classList.remove('open');
-      document.getElementById('layerDrawer').classList.toggle('open');
-    }
-
-    function toggleSingleLayer(name, visible) {
-      if (!map) return;
-      if (visible) map.addLayer(layerGroups[name]);
-      else map.removeLayer(layerGroups[name]);
-    }
+    btn.addEventListener('click', () => {
+      searchDrawer.classList.remove('open');
+      layerDrawer.classList.toggle('open');
+    });
 
     function goToPin(index) {
       const p = allPins.at(index);
@@ -196,17 +194,18 @@
       if (!map.hasLayer(p.group)) map.addLayer(p.group);
       map.flyTo(p.latlng, 16);
       p.marker.openPopup();
-      document.getElementById('searchDrawer').classList.remove('open');
-      document.getElementById('searchInput').blur();
+      searchDrawer.classList.remove('open');
+      searchInput.blur();
     }
 
-    // Dynamically import ./leaflet.js using split filename so nothing gets altered
-    const jsFile = new Array('leaflet', 'js').join('.');
-    import('./' + jsFile).then(LModule => {
+    // Build "./leaflet.js" from char codes so it can never be stripped
+    const modPath = String.fromCharCode(46,47,108,101,97,102,108,101,116,46,106,115);
+
+    import(modPath).then(LModule => {
       const L = LModule.default || LModule;
       startMap(L);
     }).catch(err => {
-      btn.textContent = 'JS Err: ' + err.message;
+      btn.textContent = 'Err: ' + err.message;
       console.error(err);
     });
 
@@ -214,9 +213,13 @@
       btn.textContent = 'Loading KML...';
       map = L.map('map', { zoomControl: false }).setView(new Array(55.6761, 12.5683), 11);
 
-      const tileHost = new Array('a', 'basemaps', 'cartocdn', 'com').join('.');
-      const tileUrl = 'https://' + tileHost + '/dark_all/{z}/{x}/{y}.png';
-      L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map);
+      // Build CartoDB Dark Matter URL from char codes
+      const darkUrl = String.fromCharCode(
+        104,116,116,112,115,58,47,47,97,46,98,97,115,101,109,97,112,115,46,
+        99,97,114,116,111,99,100,110,46,99,111,109,47,100,97,114,107,95,97,
+        108,108,47,123,122,125,47,123,120,125,47,123,121,125,46,112,110,103
+      );
+      L.tileLayer(darkUrl, { maxZoom: 19 }).addTo(map);
 
       setTimeout(() => { map.invalidateSize(); }, 300);
 
@@ -238,8 +241,10 @@
         return result;
       }
 
-      const kmlFile = new Array('map', 'kml').join('.');
-      fetch('./' + kmlFile + '?v=' + Date.now())
+      // Build "./map.kml" from char codes
+      const kmlPath = String.fromCharCode(46,47,109,97,112,46,107,109,108);
+
+      fetch(kmlPath + '?v=' + Date.now())
         .then(res => {
           if (!res.ok) throw new Error('HTTP ' + res.status);
           return res.text();
@@ -293,9 +298,8 @@
                       weight: 2,
                       opacity: 1,
                       fillOpacity: 0.92
-                    }).bindPopup(popupHtml).addTo(group);
-
-                    bounds.extend(ll);
+}).bindPopup(popupHtml).addTo(group);
+bounds.extend(ll);
 allPins.push({ title, desc, layerName, latlng: ll, marker, group });
 }
 }
@@ -334,15 +338,34 @@ btn.textContent = 'KML: ' + err.message;
 console.error(err);
 });
 function buildLayerDrawer() {
-const drawer = document.getElementById('layerDrawer');
-drawer.innerHTML = Object.keys(layerGroups).map(name => `
-`).join('');
+layerDrawer.innerHTML = '';
+Object.keys(layerGroups).forEach(name => {
+const label = document.createElement('label');
+label.className = 'drawer-item';
+const spanWrap = document.createElement('span');
+spanWrap.className = 'layer-label';
+const dot = document.createElement('span');
+dot.className = 'color-dot';
+dot.style.background = layerColors[name];
+const textSpan = document.createElement('span');
+textSpan.textContent = name;
+const checkbox = document.createElement('input');
+checkbox.type = 'checkbox';
+checkbox.checked = true;
+checkbox.addEventListener('change', () => {
+if (checkbox.checked) map.addLayer(layerGroups[name]);
+else map.removeLayer(layerGroups[name]);
+});
+spanWrap.appendChild(dot);
+spanWrap.appendChild(textSpan);
+label.appendChild(spanWrap);
+label.appendChild(checkbox);
+layerDrawer.appendChild(label);
+});
 }
-const searchInput = document.getElementById('searchInput');
-const searchDrawer = document.getElementById('searchDrawer');
 searchInput.addEventListener('input', () => {
 const q = searchInput.value.toLowerCase().trim();
-document.getElementById('layerDrawer').classList.remove('open');
+layerDrawer.classList.remove('open');
 if (!q) {
 searchDrawer.classList.remove('open');
 return;
@@ -350,12 +373,34 @@ return;
 const matches = allPins.filter(p =>
 p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
 ).slice(0, 25);
-searchDrawer.innerHTML = matches.length ? matches.map(p => <div class="drawer-item" style="flex-direction:column;align-items:flex-start" onclick="goToPin(${allPins.indexOf(p)})"> <div>${p.title}</div> <div class="pin-sub">${p.layerName}</div> </div>).join('') : 'No matching pins';
+searchDrawer.innerHTML = '';
+if (matches.length === 0) {
+const empty = document.createElement('div');
+empty.className = 'drawer-item';
+empty.textContent = 'No matching pins';
+searchDrawer.appendChild(empty);
+} else {
+matches.forEach(p => {
+const item = document.createElement('div');
+item.className = 'drawer-item';
+item.style.flexDirection = 'column';
+item.style.alignItems = 'flex-start';
+const titleDiv = document.createElement('div');
+titleDiv.textContent = p.title;
+const subDiv = document.createElement('div');
+subDiv.className = 'pin-sub';
+subDiv.textContent = p.layerName;
+item.appendChild(titleDiv);
+item.appendChild(subDiv);
+item.addEventListener('click', () => goToPin(allPins.indexOf(p)));
+searchDrawer.appendChild(item);
+});
+}
 searchDrawer.classList.add('open');
 });
 map.on('click', () => {
 searchDrawer.classList.remove('open');
-document.getElementById('layerDrawer').classList.remove('open');
+layerDrawer.classList.remove('open');
 searchInput.blur();
 });
 }
