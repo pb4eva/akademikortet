@@ -172,9 +172,8 @@
   </div>
 
   <script>
-    // 1. Dynamically inject Leaflet CSS & JS so URLs never get truncated on copy-paste
-    const cdnParts = ['https:/', 'unpkg.com', 'leaflet@1.9.4', 'dist'];
-    const baseCdn = cdnParts.join('/');
+    // Build Leaflet URLs using simple string concatenation (no brackets to get stripped!)
+    const baseCdn = 'https://' + '://unpkg.com';
 
     const cssLink = document.createElement('link');
     cssLink.rel = 'stylesheet';
@@ -187,7 +186,7 @@
     document.head.appendChild(jsScript);
 
     let map;
-    const allPins = [];
+    const allPins = new Array();
     const layerGroups = {};
     const layerColors = {};
 
@@ -215,16 +214,16 @@
     function initApp() {
       map = L.map('map', { zoomControl: false }).setView([55.6761, 12.5683], 11);
 
-      // Build CartoDB Dark Matter URL from parts so it never breaks
-      const tileUrl = ['https:/', '://cartocdn.com', 'dark_all', '{z}', '{x}', '{y}.png'].join('/');
+      // Build CartoDB Dark Matter URL using string concatenation
+      const tileUrl = 'https://' + '://cartocdn.com{z}/{x}/{y}.png';
       L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map);
 
       setTimeout(() => { map.invalidateSize(); }, 300);
 
-      const palette = ['#0a84ff', '#30d158', '#ff9f0a', '#ff375f', '#bf5af2', '#64d2ff', '#ffd60a', '#ff453a', '#5e5ce6', '#32ade6'];
+      const palette = new Array('#0a84ff', '#30d158', '#ff9f0a', '#ff375f', '#bf5af2', '#64d2ff', '#ffd60a', '#ff453a', '#5e5ce6', '#32ade6');
 
       function parseCoords(coordText) {
-        const result = [];
+        const result = new Array();
         const pairs = coordText.trim().split(/\s+/);
         for (let i = 0; i < pairs.length; i++) {
           const parts = pairs.at(i).split(',');
@@ -248,7 +247,7 @@
           const parser = new DOMParser();
           const kml = parser.parseFromString(kmlText, 'text/xml');
           let folders = Array.from(kml.getElementsByTagName('Folder'));
-          if (folders.length === 0) folders = [kml.documentElement];
+          if (folders.length === 0) folders = new Array(kml.documentElement);
 
           const bounds = L.latLngBounds();
 
