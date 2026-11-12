@@ -9,6 +9,7 @@ const searchInput = document.getElementById('searchInput');
 const allPins = new Array();
 const layerGroups = {};
 const layerColors = {};
+let isDarkMode = true;
 
 btn.addEventListener('click', () => {
   searchDrawer.classList.remove('open');
@@ -19,7 +20,7 @@ function goToPin(index) {
   const p = allPins.at(index);
   if (!p) return;
   if (!map.hasLayer(p.group)) map.addLayer(p.group);
-  map.flyTo(p.latlng, 16);
+  map.flyTo(p.latlng, 17);
   p.marker.openPopup();
   searchDrawer.classList.remove('open');
   searchInput.blur();
@@ -37,15 +38,55 @@ const createPoly = (pts, opts) => L.polyline ? L.polyline(pts, opts) : new L.Pol
 const createPolygon = (pts, opts) => L.polygon ? L.polygon(pts, opts) : new L.Polygon(pts, opts);
 const createPoint = (x, y) => L.point ? L.point(x, y) : new L.Point(x, y);
 
-const map = createMap('map', { zoomControl: false }).setView(new Array(55.6761, 12.5683), 11);
+// Center directly on Sorø Akademi
+const map = createMap('map', { zoomControl: false }).setView(new Array(55.4302, 11.5565), 16);
 
-const darkUrl = String.fromCharCode(
-  104,116,116,112,115,58,47,47,116,105,108,101,46,111,112,101,110,115,116,114,
-  101,101,116,109,97,112,46,111,114,103,47,123,122,125,47,123,120,125,47,123,
-  121,125,46,112,110,103
+// Simplified Dark Basemap (Esri Dark Gray Canvas - Free, No API Key)
+const darkBaseUrl = String.fromCharCode(
+  104,116,116,112,115,58,47,47,115,101,114,118,101,114,46,97,114,99,103,105,115,
+  46,99,111,109,47,65,114,99,71,73,83,47,114,101,115,116,47,115,101,114,118,105,
+  99,101,115,47,67,97,110,118,97,115,47,87,111,114,108,100,95,68,97,114,107,95,
+  71,114,97,121,95,66,97,115,101,47,77,97,112,83,101,114,118,101,114,47,116,105,
+  108,101,47,123,122,125,47,123,121,125,47,123,120,125
 );
 
-createTile(darkUrl, { maxZoom: 19 }).addTo(map);
+// Simplified Dark Labels Overlay
+const darkLabelsUrl = String.fromCharCode(
+  104,116,116,112,115,58,47,47,115,101,114,118,101,114,46,97,114,99,103,105,115,
+  46,99,111,109,47,65,114,99,71,73,83,47,114,101,115,116,47,115,101,114,118,105,
+  99,101,115,47,67,97,110,118,97,115,47,87,111,114,108,100,95,68,97,114,107,95,
+  71,114,97,121,95,82,101,102,101,114,101,110,99,101,47,77,97,112,83,101,114,118,
+  101,114,47,116,105,108,101,47,123,122,125,47,123,121,125,47,123,120,125
+);
+
+// Light Simplified Basemap (Esri Light Gray Canvas)
+const lightBaseUrl = String.fromCharCode(
+  104,116,116,112,115,58,47,47,115,101,114,118,101,114,46,97,114,99,103,105,115,
+  46,99,111,109,47,65,114,99,71,73,83,47,114,101,115,116,47,115,101,114,118,105,
+  99,101,115,47,67,97,110,118,97,115,47,87,111,114,108,100,95,76,105,103,104,116,
+  95,71,114,97,121,95,66,97,115,101,47,77,97,112,83,101,114,118,101,114,47,116,
+  105,108,101,47,123,122,125,47,123,121,125,47,123,120,125
+);
+
+const darkBaseLayer = createTile(darkBaseUrl, { maxZoom: 19 });
+const darkLabelsLayer = createTile(darkLabelsUrl, { maxZoom: 19 });
+const lightBaseLayer = createTile(lightBaseUrl, { maxZoom: 19 });
+
+darkBaseLayer.addTo(map);
+darkLabelsLayer.addTo(map);
+
+function setMapTheme(dark) {
+  isDarkMode = dark;
+  if (dark) {
+    map.removeLayer(lightBaseLayer);
+    darkBaseLayer.addTo(map);
+    darkLabelsLayer.addTo(map);
+  } else {
+    map.removeLayer(darkBaseLayer);
+    map.removeLayer(darkLabelsLayer);
+    lightBaseLayer.addTo(map);
+  }
+}
 
 setTimeout(() => { map.invalidateSize(); }, 300);
 
@@ -117,12 +158,12 @@ fetch(kmlPath + '?v=' + Date.now())
             if (coords.length > 0) {
               const ll = coords.at(0);
               const marker = createCircle(ll, {
-                radius: 8,
+                radius: 7,
                 fillColor: color,
                 color: '#ffffff',
                 weight: 2,
                 opacity: 1,
-                fillOpacity: 0.92
+                fillOpacity: 0.95
               }).bindPopup(popupHtml).addTo(group);
 
               bounds.extend(ll);
@@ -134,7 +175,7 @@ fetch(kmlPath + '?v=' + Date.now())
           if (coordNode) {
             const coords = parseCoords(coordNode.textContent);
             if (coords.length > 0) {
-              const line = createPoly(coords, { color: color, weight: 4, opacity: 0.85 }).bindPopup(popupHtml).addTo(group);
+              const line = createPoly(coords, { color: color, weight: 3, opacity: 0.9 }).bindPopup(popupHtml).addTo(group);
               bounds.extend(line.getBounds());
               allPins.push({ title, desc, layerName, latlng: line.getBounds().getCenter(), marker: line, group });
             }
@@ -155,7 +196,7 @@ fetch(kmlPath + '?v=' + Date.now())
 
     map.invalidateSize();
     if (bounds.isValid()) {
-      map.fitBounds(bounds, { padding: createPoint(40, 40) });
+      map.fitBounds(bounds, { padding: createPoint(30, 30) });
     }
     btn.textContent = `Layers (${Object.keys(layerGroups).length})`;
     buildLayerDrawer();
@@ -167,6 +208,26 @@ fetch(kmlPath + '?v=' + Date.now())
 
 function buildLayerDrawer() {
   layerDrawer.innerHTML = '';
+
+  // Add Dark Simplified Map toggle at the top of the drawer
+  const themeLabel = document.createElement('label');
+  themeLabel.className = 'drawer-item';
+  themeLabel.style.borderBottom = '1px solid rgba(255, 255, 255, 0.28)';
+  themeLabel.style.fontWeight = '600';
+
+  const themeText = document.createElement('span');
+  themeText.textContent = 'Dark Simplified Map';
+
+  const themeCheck = document.createElement('input');
+  themeCheck.type = 'checkbox';
+  themeCheck.checked = isDarkMode;
+  themeCheck.addEventListener('change', () => setMapTheme(themeCheck.checked));
+
+  themeLabel.appendChild(themeText);
+  themeLabel.appendChild(themeCheck);
+  layerDrawer.appendChild(themeLabel);
+
+  // Add all KML layers below
   Object.keys(layerGroups).forEach(name => {
     const label = document.createElement('label');
     label.className = 'drawer-item';
@@ -190,62 +251,54 @@ function buildLayerDrawer() {
     });
 
     spanWrap.appendChild(dot);
-    spanWrap.appendChild(textSpan);
-    label.appendChild(spanWrap);
-    label.appendChild(checkbox);
-    layerDrawer.appendChild(label);
-  });
+spanWrap.appendChild(textSpan);
+label.appendChild(spanWrap);
+label.appendChild(checkbox);
+layerDrawer.appendChild(label);
+});
 }
-
 searchInput.addEventListener('input', () => {
-  const q = searchInput.value.toLowerCase().trim();
-  layerDrawer.classList.remove('open');
-  if (!q) {
-    searchDrawer.classList.remove('open');
-    return;
-  }
-
-  const matches = allPins.filter(p =>
-    p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
-  ).slice(0, 25);
-
-  searchDrawer.innerHTML = '';
-  if (matches.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'drawer-item';
-    empty.textContent = 'No matching pins';
-    searchDrawer.appendChild(empty);
-  } else {
-    matches.forEach(p => {
-      const item = document.createElement('div');
-      item.className = 'drawer-item';
-      item.style.flexDirection = 'column';
-      item.style.alignItems = 'flex-start';
-
-      const titleDiv = document.createElement('div');
-      titleDiv.textContent = p.title;
-
-      const subDiv = document.createElement('div');
-      subDiv.className = 'pin-sub';
-      subDiv.textContent = p.layerName;
-
-      item.appendChild(titleDiv);
-      item.appendChild(subDiv);
-      item.addEventListener('click', () => goToPin(allPins.indexOf(p)));
-      searchDrawer.appendChild(item);
-    });
-  }
-  searchDrawer.classList.add('open');
+const q = searchInput.value.toLowerCase().trim();
+layerDrawer.classList.remove('open');
+if (!q) {
+searchDrawer.classList.remove('open');
+return;
+}
+const matches = allPins.filter(p =>
+p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
+).slice(0, 25);
+searchDrawer.innerHTML = '';
+if (matches.length === 0) {
+const empty = document.createElement('div');
+empty.className = 'drawer-item';
+empty.textContent = 'No matching pins';
+searchDrawer.appendChild(empty);
+} else {
+matches.forEach(p => {
+const item = document.createElement('div');
+item.className = 'drawer-item';
+item.style.flexDirection = 'column';
+item.style.alignItems = 'flex-start';
+const titleDiv = document.createElement('div');
+titleDiv.textContent = p.title;
+const subDiv = document.createElement('div');
+subDiv.className = 'pin-sub';
+subDiv.textContent = p.layerName;
+item.appendChild(titleDiv);
+item.appendChild(subDiv);
+item.addEventListener('click', () => goToPin(allPins.indexOf(p)));
+searchDrawer.appendChild(item);
 });
-
+}
+searchDrawer.classList.add('open');
+});
 map.on('click', () => {
-  searchDrawer.classList.remove('open');
-  layerDrawer.classList.remove('open');
-  searchInput.blur();
+searchDrawer.classList.remove('open');
+layerDrawer.classList.remove('open');
+searchInput.blur();
 });
-
 document.addEventListener('touchmove', function(e) {
-  if (!e.target.closest('.drawer')) {
-    e.preventDefault();
-  }
+if (!e.target.closest('.drawer')) {
+e.preventDefault();
+}
 }, { passive: false });
