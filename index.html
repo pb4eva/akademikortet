@@ -191,12 +191,12 @@
       const result = [];
       const pairs = coordText.trim().split(/\s+/);
       for (let i = 0; i < pairs.length; i++) {
-        const parts = pairs[i].split(',');
+        const parts = pairs.at(i).split(',');
         if (parts.length >= 2) {
-          const lng = parseFloat(parts[0]);
-          const lat = parseFloat(parts[1]);
+          const lng = parseFloat(parts.at(0));
+          const lat = parseFloat(parts.at(1));
           if (!isNaN(lat) && !isNaN(lng)) {
-            result.push([lat, lng]);
+            result.push(L.latLng(lat, lng));
           }
         }
       }
@@ -222,17 +222,17 @@
 
           const nameNode = Array.from(folder.children).find(el => el.tagName === 'name');
           const layerName = nameNode ? nameNode.textContent.trim() : `Layer ${idx + 1}`;
-          const color = palette[Object.keys(layerGroups).length % palette.length];
+          const color = palette.at(Object.keys(layerGroups).length % palette.length);
           const group = L.layerGroup().addTo(map);
 
           layerGroups[layerName] = group;
           layerColors[layerName] = color;
 
           placemarks.forEach(pm => {
-            const titleNodes = pm.getElementsByTagName('name');
-            const descNodes = pm.getElementsByTagName('description');
-            const title = titleNodes.length > 0 ? titleNodes[0].textContent.trim() : 'Unnamed Pin';
-            const desc = descNodes.length > 0 ? descNodes[0].textContent.trim() : '';
+            const titleNode = pm.getElementsByTagName('name').item(0);
+            const descNode = pm.getElementsByTagName('description').item(0);
+            const title = titleNode ? titleNode.textContent.trim() : 'Unnamed Pin';
+            const desc = descNode ? descNode.textContent.trim() : '';
 
             const popupHtml = `
               <div style="font-size:14px;font-weight:600;margin-bottom:2px;">${title}</div>
@@ -240,16 +240,16 @@
               <div style="font-size:13px;line-height:1.35;">${desc}</div>
             `;
 
-            const pointNodes = pm.getElementsByTagName('Point');
-            const lineNodes = pm.getElementsByTagName('LineString');
-            const polyNodes = pm.getElementsByTagName('Polygon');
+            const pointNode = pm.getElementsByTagName('Point').item(0);
+            const lineNode = pm.getElementsByTagName('LineString').item(0);
+            const polyNode = pm.getElementsByTagName('Polygon').item(0);
 
-            if (pointNodes.length > 0) {
-              const coordNodes = pointNodes[0].getElementsByTagName('coordinates');
-              if (coordNodes.length > 0) {
-                const coords = parseCoords(coordNodes[0].textContent);
+            if (pointNode) {
+              const coordNode = pointNode.getElementsByTagName('coordinates').item(0);
+              if (coordNode) {
+                const coords = parseCoords(coordNode.textContent);
                 if (coords.length > 0) {
-                  const ll = L.latLng(coords[0][0], coords[0][1]);
+                  const ll = coords.at(0);
                   const marker = L.circleMarker(ll, {
                     radius: 8,
                     fillColor: color,
@@ -263,20 +263,20 @@
                   allPins.push({ title, desc, layerName, latlng: ll, marker, group });
                 }
               }
-            } else if (lineNodes.length > 0) {
-              const coordNodes = lineNodes[0].getElementsByTagName('coordinates');
-              if (coordNodes.length > 0) {
-                const coords = parseCoords(coordNodes[0].textContent);
+            } else if (lineNode) {
+              const coordNode = lineNode.getElementsByTagName('coordinates').item(0);
+              if (coordNode) {
+                const coords = parseCoords(coordNode.textContent);
                 if (coords.length > 0) {
                   const line = L.polyline(coords, { color: color, weight: 4, opacity: 0.85 }).bindPopup(popupHtml).addTo(group);
                   bounds.extend(line.getBounds());
                   allPins.push({ title, desc, layerName, latlng: line.getBounds().getCenter(), marker: line, group });
                 }
               }
-            } else if (polyNodes.length > 0) {
-              const coordNodes = polyNodes[0].getElementsByTagName('coordinates');
-              if (coordNodes.length > 0) {
-                const coords = parseCoords(coordNodes[0].textContent);
+            } else if (polyNode) {
+              const coordNode = polyNode.getElementsByTagName('coordinates').item(0);
+              if (coordNode) {
+                const coords = parseCoords(coordNode.textContent);
                 if (coords.length > 0) {
                   const poly = L.polygon(coords, { color: color, weight: 2, fillOpacity: 0.25 }).bindPopup(popupHtml).addTo(group);
                   bounds.extend(poly.getBounds());
@@ -288,8 +288,8 @@
         });
 
         map.invalidateSize();
-if (bounds.isValid()) {
-map.fitBounds(bounds, { padding: [40, 40] });
+        if (bounds.isValid()) {
+map.fitBounds(bounds, { padding: L.point(40, 40) });
 }
 document.getElementById('layersBtn').textContent = Layers (${Object.keys(layerGroups).length});
 buildLayerDrawer();
@@ -327,7 +327,7 @@ searchDrawer.innerHTML = matches.length ? matches.map(p => <div class="drawer-it
 searchDrawer.classList.add('open');
 });
 function goToPin(index) {
-const p = allPins[index];
+const p = allPins.at(index);
 if (!map.hasLayer(p.group)) map.addLayer(p.group);
 map.flyTo(p.latlng, 16);
 p.marker.openPopup();
