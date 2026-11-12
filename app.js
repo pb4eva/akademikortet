@@ -2,6 +2,8 @@ const modPath = String.fromCharCode(46,47,108,101,97,102,108,101,116,46,106,115)
 const L = await import(modPath);
 
 const btn = document.getElementById('layersBtn');
+const homeBtn = document.getElementById('homeBtn');
+const locateBtn = document.getElementById('locateBtn');
 const searchDrawer = document.getElementById('searchDrawer');
 const layerDrawer = document.getElementById('layerDrawer');
 const searchInput = document.getElementById('searchInput');
@@ -10,6 +12,9 @@ const allPins = new Array();
 const layerGroups = {};
 const layerColors = {};
 let isDarkMode = true;
+let startPin = null;
+let userMarker = null;
+let userCircle = null;
 
 // Turn on Dark Simplified Mode by default
 document.body.classList.add('dark-map');
@@ -17,6 +22,66 @@ document.body.classList.add('dark-map');
 btn.addEventListener('click', () => {
   searchDrawer.classList.remove('open');
   layerDrawer.classList.toggle('open');
+});
+
+// Reset View Home Button
+homeBtn.addEventListener('click', () => {
+  searchDrawer.classList.remove('open');
+  layerDrawer.classList.remove('open');
+  searchInput.blur();
+  if (startPin) {
+    map.flyTo(startPin.latlng, 16);
+  } else {
+    map.flyTo(new Array(55.4302, 11.5565), 16);
+  }
+});
+
+// GPS Locate Me Button
+locateBtn.addEventListener('click', () => {
+  searchDrawer.classList.remove('open');
+  layerDrawer.classList.remove('open');
+  if (!('geolocation' in navigator)) {
+    alert('GPS is not supported on this device.');
+    return;
+  }
+  locateBtn.classList.add('active');
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const ll = createLatLng(pos.coords.latitude, pos.coords.longitude);
+      const acc = pos.coords.accuracy;
+
+      if (!userMarker) {
+        userMarker = createCircle(ll, {
+          radius: 7,
+          fillColor: '#0a84ff',
+          color: '#ffffff',
+          weight: 2.5,
+          opacity: 1,
+          fillOpacity: 1
+        }).addTo(map);
+
+        userCircle = createCircle(ll, {
+          radius: 18,
+          fillColor: '#0a84ff',
+          color: '#0a84ff',
+          weight: 1,
+          opacity: 0.35,
+          fillOpacity: 0.15
+        }).addTo(map);
+      } else {
+        userMarker.setLatLng(ll);
+        userCircle.setLatLng(ll);
+      }
+
+      map.flyTo(ll, 17);
+    },
+    (err) => {
+      locateBtn.classList.remove('active');
+      alert('Could not get your location. Check iPhone Location permissions.');
+      console.error(err);
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
 });
 
 function goToPin(index) {
@@ -44,7 +109,7 @@ const createPoint = (x, y) => L.point ? L.point(x, y) : new L.Point(x, y);
 // Center directly on Sorø Akademi
 const map = createMap('map', { zoomControl: false }).setView(new Array(55.4302, 11.5565), 16);
 
-// Reliable OpenStreetMap Tiles (No ArcGIS, No API Key, No Watermark)
+// Reliable OpenStreetMap Tiles
 const osmUrl = String.fromCharCode(
   104,116,116,112,115,58,47,47,116,105,108,101,46,111,112,101,110,115,116,114,
   101,101,116,109,97,112,46,111,114,103,47,123,122,125,47,123,120,125,47,123,
@@ -94,8 +159,6 @@ fetch(kmlPath + '?v=' + Date.now())
     let folders = Array.from(kml.getElementsByTagName('Folder'));
     if (folders.length === 0) folders = new Array(kml.documentElement);
 
-    const bounds = createBounds();
-
     folders.forEach((folder, idx) => {
       const placemarks = Array.from(folder.getElementsByTagName('Placemark'));
       if (placemarks.length === 0) return;
@@ -139,7 +202,6 @@ fetch(kmlPath + '?v=' + Date.now())
                 fillOpacity: 0.95
               }).bindPopup(popupHtml).addTo(group);
 
-              bounds.extend(ll);
               allPins.push({ title, desc, layerName, latlng: ll, marker, group });
             }
           }
@@ -149,7 +211,6 @@ fetch(kmlPath + '?v=' + Date.now())
             const coords = parseCoords(coordNode.textContent);
             if (coords.length > 0) {
               const line = createPoly(coords, { color: color, weight: 3, opacity: 0.9 }).bindPopup(popupHtml).addTo(group);
-              bounds.extend(line.getBounds());
               allPins.push({ title, desc, layerName, latlng: line.getBounds().getCenter(), marker: line, group });
             }
           }
@@ -159,7 +220,6 @@ fetch(kmlPath + '?v=' + Date.now())
             const coords = parseCoords(coordNode.textContent);
             if (coords.length > 0) {
               const poly = createPolygon(coords, { color: color, weight: 2, fillOpacity: 0.25 }).bindPopup(popupHtml).addTo(group);
-              bounds.extend(poly.getBounds());
               allPins.push({ title, desc, layerName, latlng: poly.getBounds().getCenter(), marker: poly, group });
             }
           }
@@ -168,14 +228,14 @@ fetch(kmlPath + '?v=' + Date.now())
     });
 
     map.invalidateSize();
-const startPin = allPins.find(p => p.title === 'Fratergården');
-if (startPin) {
-  map.setView(startPin.latlng, 16);
-  setTimeout(() => {
-    map.invalidateSize();
-    map.setView(startPin.latlng, 16);
-  }, 350);
-}
+    startPin = allPins.find(p => p.title === 'Fratergården');
+    if (startPin) {
+      map.setView(startPin.latlng, 16);
+      setTimeout(() => {
+        map.invalidateSize();
+        map.setView(startPin.latlng, 16);
+      }, 350);
+    }
 
     btn.textContent = `Layers (${Object.keys(layerGroups).length})`;
     buildLayerDrawer();
@@ -222,63 +282,55 @@ function buildLayerDrawer() {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = true;
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) map.addLayer(layerGroups[name]);
-      else map.removeLayer(layerGroups[name]);
-    });
-
-    spanWrap.appendChild(dot);
-    spanWrap.appendChild(textSpan);
-    label.appendChild(spanWrap);
-    label.appendChild(checkbox);
-    layerDrawer.appendChild(label);
-  });
-}
-
-searchInput.addEventListener('input', () => {
-  const q = searchInput.value.toLowerCase().trim();
-  layerDrawer.classList.remove('open');
-  if (!q) {
-    searchDrawer.classList.remove('open');
-    return;
-  }
-
-  const matches = allPins.filter(p =>
-    p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
-  ).slice(0, 25);
-
-  searchDrawer.innerHTML = '';
-  if (matches.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'drawer-item';
-    empty.textContent = 'No matching pins';
-    searchDrawer.appendChild(empty);
-  } else {
-    matches.forEach(p => {
-      const item = document.createElement('div');
-      item.className = 'drawer-item';
-      item.style.flexDirection = 'column';
-      item.style.alignItems = 'flex-start';
-
-      const titleDiv = document.createElement('div');
-      titleDiv.textContent = p.title;
-
-      const subDiv = document.createElement('div');
-      subDiv.className = 'pin-sub';
-      subDiv.textContent = p.layerName;
-
-      item.appendChild(titleDiv);
-      item.appendChild(subDiv);
-      item.addEventListener('click', () => goToPin(allPins.indexOf(p)));
-      searchDrawer.appendChild(item);
-    });
-  }
-  searchDrawer.classList.add('open');
+checkbox.addEventListener('change', () => {
+if (checkbox.checked) map.addLayer(layerGroups[name]);
+else map.removeLayer(layerGroups[name]);
 });
-
+spanWrap.appendChild(dot);
+spanWrap.appendChild(textSpan);
+label.appendChild(spanWrap);
+label.appendChild(checkbox);
+layerDrawer.appendChild(label);
+});
+}
+searchInput.addEventListener('input', () => {
+const q = searchInput.value.toLowerCase().trim();
+layerDrawer.classList.remove('open');
+if (!q) {
+searchDrawer.classList.remove('open');
+return;
+}
+const matches = allPins.filter(p =>
+p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
+).slice(0, 25);
+searchDrawer.innerHTML = '';
+if (matches.length === 0) {
+const empty = document.createElement('div');
+empty.className = 'drawer-item';
+empty.textContent = 'No matching pins';
+searchDrawer.appendChild(empty);
+} else {
+matches.forEach(p => {
+const item = document.createElement('div');
+item.className = 'drawer-item';
+item.style.flexDirection = 'column';
+item.style.alignItems = 'flex-start';
+const titleDiv = document.createElement('div');
+titleDiv.textContent = p.title;
+const subDiv = document.createElement('div');
+subDiv.className = 'pin-sub';
+subDiv.textContent = p.layerName;
+item.appendChild(titleDiv);
+item.appendChild(subDiv);
+item.addEventListener('click', () => goToPin(allPins.indexOf(p)));
+searchDrawer.appendChild(item);
+});
+}
+searchDrawer.classList.add('open');
+});
 map.on('click', () => {
-  searchDrawer.classList.remove('open');
-  layerDrawer.classList.remove('open');
+searchDrawer.classList.remove('open');
+layerDrawer.classList.remove('open');
 searchInput.blur();
 });
 document.addEventListener('touchmove', function(e) {
