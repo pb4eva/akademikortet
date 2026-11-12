@@ -168,9 +168,10 @@ fetch(kmlPath + '?v=' + Date.now())
     });
 
     map.invalidateSize();
-    if (bounds.isValid()) {
-      map.fitBounds(bounds, { padding: createPoint(30, 30) });
-    }
+    const startPin = allPins.find(p => p.title === 'Fratergården');
+if (startPin) {
+  map.setView(startPin.latlng, 16);
+}
     btn.textContent = `Layers (${Object.keys(layerGroups).length})`;
     buildLayerDrawer();
   })
