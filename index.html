@@ -2,6 +2,8 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="./leaflet.css" />
+  <script src="./leaflet.js"></script>
   <style>
     html, body {
       margin: 0;
@@ -173,26 +175,10 @@
 
   <script>
     const btn = document.getElementById('layersBtn');
-
-    // Load Leaflet from jsDelivr (split domain so nothing gets altered)
-    const cdnHost = new Array('cdn', 'jsdelivr', 'net').join('.');
-    const baseCdn = 'https://' + cdnHost + '/npm/leaflet@1.9.4/dist';
-
-    const cssLink = document.createElement('link');
-    cssLink.rel = 'stylesheet';
-    cssLink.href = baseCdn + '/leaflet.css';
-    document.head.appendChild(cssLink);
-
-    const jsScript = document.createElement('script');
-    jsScript.src = baseCdn + '/leaflet.js';
-    jsScript.onload = initApp;
-    jsScript.onerror = () => { btn.textContent = 'CDN Blocked'; };
-    document.head.appendChild(jsScript);
-
-    let map;
     const allPins = new Array();
     const layerGroups = {};
     const layerColors = {};
+    let map;
 
     function toggleLayers() {
       document.getElementById('searchDrawer').classList.remove('open');
@@ -215,7 +201,12 @@
       document.getElementById('searchInput').blur();
     }
 
-    function initApp() {
+    window.addEventListener('load', () => {
+      if (typeof L === 'undefined') {
+        btn.textContent = 'Missing leaflet.js';
+        return;
+      }
+
       btn.textContent = 'Loading KML...';
       map = L.map('map', { zoomControl: false }).setView(new Array(55.6761, 12.5683), 11);
 
@@ -243,7 +234,7 @@
         return result;
       }
 
-      fetch('map.kml?v=' + Date.now())
+      fetch('./map.kml?v=' + Date.now())
         .then(res => {
           if (!res.ok) throw new Error('HTTP ' + res.status);
           return res.text();
@@ -297,14 +288,15 @@
                       weight: 2,
                       opacity: 1,
                       fillOpacity: 0.92
-}).bindPopup(popupHtml).addTo(group);
-bounds.extend(ll);
-allPins.push({ title, desc, layerName, latlng: ll, marker, group });
-}
-}
-} else if (lineNode) {
-const coordNode = lineNode.getElementsByTagName('coordinates').item(0);
-if (coordNode) {
+                    }).bindPopup(popupHtml).addTo(group);
+
+                    bounds.extend(ll);
+                    allPins.push({ title, desc, layerName, latlng: ll, marker, group });
+                  }
+                }
+              } else if (lineNode) {
+                const coordNode = lineNode.getElementsByTagName('coordinates').item(0);
+                if (coordNode) {
 const coords = parseCoords(coordNode.textContent);
 if (coords.length > 0) {
 const line = L.polyline(coords, { color: color, weight: 4, opacity: 0.85 }).bindPopup(popupHtml).addTo(group);
@@ -361,7 +353,7 @@ searchDrawer.classList.remove('open');
 document.getElementById('layerDrawer').classList.remove('open');
 searchInput.blur();
 });
-}
+});
 document.addEventListener('touchmove', function(e) {
 if (!e.target.closest('.drawer')) {
 e.preventDefault();
