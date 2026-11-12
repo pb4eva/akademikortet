@@ -168,10 +168,15 @@ fetch(kmlPath + '?v=' + Date.now())
     });
 
     map.invalidateSize();
-    const startPin = allPins.find(p => p.title === 'Fratergården');
+const startPin = allPins.find(p => p.title === 'Fratergården');
 if (startPin) {
   map.setView(startPin.latlng, 16);
+  setTimeout(() => {
+    map.invalidateSize();
+    map.setView(startPin.latlng, 16);
+  }, 350);
 }
+
     btn.textContent = `Layers (${Object.keys(layerGroups).length})`;
     buildLayerDrawer();
   })
