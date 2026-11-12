@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <link rel="stylesheet" href="https://unpkg.com" />
-  <script src="https://unpkg.com"></script>
+  <link rel="stylesheet" href="https://cloudflare.com" />
+  <script src="https://cloudflare.com"></script>
   <style>
     html, body {
       margin: 0;
@@ -175,10 +175,12 @@
 
   <script>
     const map = L.map('map', { zoomControl: false }).setView([55.6761, 12.5683], 11);
-    
-    // Direct CartoDB Dark Matter URL (no subdomain placeholder to break)
-    const darkTiles = 'https://cartocdn.com{z}/{x}/{y}.png';
-    L.tileLayer(darkTiles, { maxZoom: 19 }).addTo(map);
+
+    // Build CartoDB Dark Matter URL cleanly
+    const tileHost = '://cartocdn.com';
+    L.tileLayer('https://a.' + tileHost + '/dark_all/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(map);
 
     setTimeout(() => { map.invalidateSize(); }, 300);
 
@@ -286,8 +288,7 @@
             }
           });
         });
-
-        map.invalidateSize();
+map.invalidateSize();
 if (bounds.isValid()) {
 map.fitBounds(bounds, { padding: L.point(40, 40) });
 }
