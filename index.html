@@ -2,8 +2,6 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <link rel="stylesheet" href="https://cloudflare.com" />
-  <script src="https://cloudflare.com"></script>
   <style>
     html, body {
       margin: 0;
@@ -174,120 +172,156 @@
   </div>
 
   <script>
-    const map = L.map('map', { zoomControl: false }).setView([55.6761, 12.5683], 11);
+    // 1. Dynamically inject Leaflet CSS & JS so URLs never get truncated on copy-paste
+    const cdnParts = ['https:/', 'unpkg.com', 'leaflet@1.9.4', 'dist'];
+    const baseCdn = cdnParts.join('/');
 
-    // Build CartoDB Dark Matter URL cleanly
-    const tileHost = '://cartocdn.com';
-    L.tileLayer('https://a.' + tileHost + '/dark_all/{z}/{x}/{y}.png', {
-      maxZoom: 19
-    }).addTo(map);
+    const cssLink = document.createElement('link');
+    cssLink.rel = 'stylesheet';
+    cssLink.href = baseCdn + '/leaflet.css';
+    document.head.appendChild(cssLink);
 
-    setTimeout(() => { map.invalidateSize(); }, 300);
+    const jsScript = document.createElement('script');
+    jsScript.src = baseCdn + '/leaflet.js';
+    jsScript.onload = initApp;
+    document.head.appendChild(jsScript);
 
-    const palette = ['#0a84ff', '#30d158', '#ff9f0a', '#ff375f', '#bf5af2', '#64d2ff', '#ffd60a', '#ff453a', '#5e5ce6', '#32ade6'];
+    let map;
     const allPins = [];
     const layerGroups = {};
     const layerColors = {};
 
-    function parseCoords(coordText) {
-      const result = [];
-      const pairs = coordText.trim().split(/\s+/);
-      for (let i = 0; i < pairs.length; i++) {
-        const parts = pairs.at(i).split(',');
-        if (parts.length >= 2) {
-          const lng = parseFloat(parts.at(0));
-          const lat = parseFloat(parts.at(1));
-          if (!isNaN(lat) && !isNaN(lng)) {
-            result.push(L.latLng(lat, lng));
-          }
-        }
-      }
-      return result;
+    function toggleLayers() {
+      document.getElementById('searchDrawer').classList.remove('open');
+      document.getElementById('layerDrawer').classList.toggle('open');
     }
 
-    fetch('map.kml?v=' + Date.now())
-      .then(res => {
-        if (!res.ok) throw new Error('Could not find map.kml');
-        return res.text();
-      })
-      .then(kmlText => {
-        const parser = new DOMParser();
-        const kml = parser.parseFromString(kmlText, 'text/xml');
-        let folders = Array.from(kml.getElementsByTagName('Folder'));
-        if (folders.length === 0) folders = [kml.documentElement];
+    function toggleSingleLayer(name, visible) {
+      if (!map) return;
+      if (visible) map.addLayer(layerGroups[name]);
+      else map.removeLayer(layerGroups[name]);
+    }
 
-        const bounds = L.latLngBounds();
+    function goToPin(index) {
+      const p = allPins.at(index);
+      if (!p || !map) return;
+      if (!map.hasLayer(p.group)) map.addLayer(p.group);
+      map.flyTo(p.latlng, 16);
+      p.marker.openPopup();
+      document.getElementById('searchDrawer').classList.remove('open');
+      document.getElementById('searchInput').blur();
+    }
 
-        folders.forEach((folder, idx) => {
-          const placemarks = Array.from(folder.getElementsByTagName('Placemark'));
-          if (placemarks.length === 0) return;
+    function initApp() {
+      map = L.map('map', { zoomControl: false }).setView([55.6761, 12.5683], 11);
 
-          const nameNode = Array.from(folder.children).find(el => el.tagName === 'name');
-          const layerName = nameNode ? nameNode.textContent.trim() : `Layer ${idx + 1}`;
-          const color = palette.at(Object.keys(layerGroups).length % palette.length);
-          const group = L.layerGroup().addTo(map);
+      // Build CartoDB Dark Matter URL from parts so it never breaks
+      const tileUrl = ['https:/', '://cartocdn.com', 'dark_all', '{z}', '{x}', '{y}.png'].join('/');
+      L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map);
 
-          layerGroups[layerName] = group;
-          layerColors[layerName] = color;
+      setTimeout(() => { map.invalidateSize(); }, 300);
 
-          placemarks.forEach(pm => {
-            const titleNode = pm.getElementsByTagName('name').item(0);
-            const descNode = pm.getElementsByTagName('description').item(0);
-            const title = titleNode ? titleNode.textContent.trim() : 'Unnamed Pin';
-            const desc = descNode ? descNode.textContent.trim() : '';
+      const palette = ['#0a84ff', '#30d158', '#ff9f0a', '#ff375f', '#bf5af2', '#64d2ff', '#ffd60a', '#ff453a', '#5e5ce6', '#32ade6'];
 
-            const popupHtml = `
-              <div style="font-size:14px;font-weight:600;margin-bottom:2px;">${title}</div>
-              <div style="font-size:11px;color:#8e8e93;margin-bottom:4px;">${layerName}</div>
-              <div style="font-size:13px;line-height:1.35;">${desc}</div>
-            `;
-
-            const pointNode = pm.getElementsByTagName('Point').item(0);
-            const lineNode = pm.getElementsByTagName('LineString').item(0);
-            const polyNode = pm.getElementsByTagName('Polygon').item(0);
-
-            if (pointNode) {
-              const coordNode = pointNode.getElementsByTagName('coordinates').item(0);
-              if (coordNode) {
-                const coords = parseCoords(coordNode.textContent);
-                if (coords.length > 0) {
-                  const ll = coords.at(0);
-                  const marker = L.circleMarker(ll, {
-                    radius: 8,
-                    fillColor: color,
-                    color: '#ffffff',
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 0.92
-                  }).bindPopup(popupHtml).addTo(group);
-
-                  bounds.extend(ll);
-                  allPins.push({ title, desc, layerName, latlng: ll, marker, group });
-                }
-              }
-            } else if (lineNode) {
-              const coordNode = lineNode.getElementsByTagName('coordinates').item(0);
-              if (coordNode) {
-                const coords = parseCoords(coordNode.textContent);
-                if (coords.length > 0) {
-                  const line = L.polyline(coords, { color: color, weight: 4, opacity: 0.85 }).bindPopup(popupHtml).addTo(group);
-                  bounds.extend(line.getBounds());
-                  allPins.push({ title, desc, layerName, latlng: line.getBounds().getCenter(), marker: line, group });
-                }
-              }
-            } else if (polyNode) {
-              const coordNode = polyNode.getElementsByTagName('coordinates').item(0);
-              if (coordNode) {
-                const coords = parseCoords(coordNode.textContent);
-                if (coords.length > 0) {
-                  const poly = L.polygon(coords, { color: color, weight: 2, fillOpacity: 0.25 }).bindPopup(popupHtml).addTo(group);
-                  bounds.extend(poly.getBounds());
-                  allPins.push({ title, desc, layerName, latlng: poly.getBounds().getCenter(), marker: poly, group });
-                }
-              }
+      function parseCoords(coordText) {
+        const result = [];
+        const pairs = coordText.trim().split(/\s+/);
+        for (let i = 0; i < pairs.length; i++) {
+          const parts = pairs.at(i).split(',');
+          if (parts.length >= 2) {
+            const lng = parseFloat(parts.at(0));
+            const lat = parseFloat(parts.at(1));
+            if (!isNaN(lat) && !isNaN(lng)) {
+              result.push(L.latLng(lat, lng));
             }
-          });
-        });
+          }
+        }
+        return result;
+      }
+
+      fetch('map.kml?v=' + Date.now())
+        .then(res => {
+          if (!res.ok) throw new Error('Could not find map.kml');
+          return res.text();
+        })
+        .then(kmlText => {
+          const parser = new DOMParser();
+          const kml = parser.parseFromString(kmlText, 'text/xml');
+          let folders = Array.from(kml.getElementsByTagName('Folder'));
+          if (folders.length === 0) folders = [kml.documentElement];
+
+          const bounds = L.latLngBounds();
+
+          folders.forEach((folder, idx) => {
+            const placemarks = Array.from(folder.getElementsByTagName('Placemark'));
+            if (placemarks.length === 0) return;
+
+            const nameNode = Array.from(folder.children).find(el => el.tagName === 'name');
+            const layerName = nameNode ? nameNode.textContent.trim() : `Layer ${idx + 1}`;
+            const color = palette.at(Object.keys(layerGroups).length % palette.length);
+            const group = L.layerGroup().addTo(map);
+
+            layerGroups[layerName] = group;
+            layerColors[layerName] = color;
+
+            placemarks.forEach(pm => {
+              const titleNode = pm.getElementsByTagName('name').item(0);
+              const descNode = pm.getElementsByTagName('description').item(0);
+              const title = titleNode ? titleNode.textContent.trim() : 'Unnamed Pin';
+              const desc = descNode ? descNode.textContent.trim() : '';
+
+              const popupHtml = `
+                <div style="font-size:14px;font-weight:600;margin-bottom:2px;">${title}</div>
+                <div style="font-size:11px;color:#8e8e93;margin-bottom:4px;">${layerName}</div>
+                <div style="font-size:13px;line-height:1.35;">${desc}</div>
+              `;
+
+              const pointNode = pm.getElementsByTagName('Point').item(0);
+              const lineNode = pm.getElementsByTagName('LineString').item(0);
+              const polyNode = pm.getElementsByTagName('Polygon').item(0);
+
+              if (pointNode) {
+                const coordNode = pointNode.getElementsByTagName('coordinates').item(0);
+                if (coordNode) {
+                  const coords = parseCoords(coordNode.textContent);
+                  if (coords.length > 0) {
+                    const ll = coords.at(0);
+                    const marker = L.circleMarker(ll, {
+                      radius: 8,
+                      fillColor: color,
+                      color: '#ffffff',
+                      weight: 2,
+                      opacity: 1,
+                      fillOpacity: 0.92
+                    }).bindPopup(popupHtml).addTo(group);
+
+                    bounds.extend(ll);
+                    allPins.push({ title, desc, layerName, latlng: ll, marker, group });
+                  }
+                }
+} else if (lineNode) {
+const coordNode = lineNode.getElementsByTagName('coordinates').item(0);
+if (coordNode) {
+const coords = parseCoords(coordNode.textContent);
+if (coords.length > 0) {
+const line = L.polyline(coords, { color: color, weight: 4, opacity: 0.85 }).bindPopup(popupHtml).addTo(group);
+bounds.extend(line.getBounds());
+allPins.push({ title, desc, layerName, latlng: line.getBounds().getCenter(), marker: line, group });
+}
+}
+} else if (polyNode) {
+const coordNode = polyNode.getElementsByTagName('coordinates').item(0);
+if (coordNode) {
+const coords = parseCoords(coordNode.textContent);
+if (coords.length > 0) {
+const poly = L.polygon(coords, { color: color, weight: 2, fillOpacity: 0.25 }).bindPopup(popupHtml).addTo(group);
+bounds.extend(poly.getBounds());
+allPins.push({ title, desc, layerName, latlng: poly.getBounds().getCenter(), marker: poly, group });
+}
+}
+}
+});
+});
 map.invalidateSize();
 if (bounds.isValid()) {
 map.fitBounds(bounds, { padding: L.point(40, 40) });
@@ -304,14 +338,6 @@ const drawer = document.getElementById('layerDrawer');
 drawer.innerHTML = Object.keys(layerGroups).map(name => `
 `).join('');
 }
-function toggleSingleLayer(name, visible) {
-if (visible) map.addLayer(layerGroups[name]);
-else map.removeLayer(layerGroups[name]);
-}
-function toggleLayers() {
-document.getElementById('searchDrawer').classList.remove('open');
-document.getElementById('layerDrawer').classList.toggle('open');
-}
 const searchInput = document.getElementById('searchInput');
 const searchDrawer = document.getElementById('searchDrawer');
 searchInput.addEventListener('input', () => {
@@ -327,19 +353,12 @@ p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
 searchDrawer.innerHTML = matches.length ? matches.map(p => <div class="drawer-item" style="flex-direction:column;align-items:flex-start" onclick="goToPin(${allPins.indexOf(p)})"> <div>${p.title}</div> <div class="pin-sub">${p.layerName}</div> </div>).join('') : 'No matching pins';
 searchDrawer.classList.add('open');
 });
-function goToPin(index) {
-const p = allPins.at(index);
-if (!map.hasLayer(p.group)) map.addLayer(p.group);
-map.flyTo(p.latlng, 16);
-p.marker.openPopup();
-searchDrawer.classList.remove('open');
-searchInput.blur();
-}
 map.on('click', () => {
 searchDrawer.classList.remove('open');
 document.getElementById('layerDrawer').classList.remove('open');
 searchInput.blur();
 });
+}
 document.addEventListener('touchmove', function(e) {
 if (!e.target.closest('.drawer')) {
 e.preventDefault();
