@@ -198,22 +198,19 @@
       searchInput.blur();
     }
 
-    // Build "./leaflet.js" from char codes so it can never be stripped
-    const modPath = String.fromCharCode(46,47,108,101,97,102,108,101,116,46,106,115);
+    // Build "./leaflet.js" from char codes
+    const fileName = String.fromCharCode(46,47,108,101,97,102,108,101,116,46,106,115);
 
-    import(modPath).then(LModule => {
-      const L = LModule.default || LModule;
-      startMap(L);
-    }).catch(err => {
-      btn.textContent = 'Err: ' + err.message;
-      console.error(err);
-    });
+    // Load as ES Module via dynamic script tag
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.textContent = 'import * as M from "' + fileName + '"; window.L = M.default || M; window.startLeafletMap(window.L);';
+    document.body.appendChild(s);
 
-    function startMap(L) {
+    window.startLeafletMap = function(L) {
       btn.textContent = 'Loading KML...';
       map = L.map('map', { zoomControl: false }).setView(new Array(55.6761, 12.5683), 11);
 
-      // Build CartoDB Dark Matter URL from char codes
       const darkUrl = String.fromCharCode(
         104,116,116,112,115,58,47,47,97,46,98,97,115,101,109,97,112,115,46,
         99,97,114,116,111,99,100,110,46,99,111,109,47,100,97,114,107,95,97,
@@ -241,7 +238,6 @@
         return result;
       }
 
-      // Build "./map.kml" from char codes
       const kmlPath = String.fromCharCode(46,47,109,97,112,46,107,109,108);
 
       fetch(kmlPath + '?v=' + Date.now())
@@ -298,7 +294,8 @@
                       weight: 2,
                       opacity: 1,
                       fillOpacity: 0.92
-}).bindPopup(popupHtml).addTo(group);
+                    }).bindPopup(popupHtml).addTo(group);
+
 bounds.extend(ll);
 allPins.push({ title, desc, layerName, latlng: ll, marker, group });
 }
@@ -403,7 +400,7 @@ searchDrawer.classList.remove('open');
 layerDrawer.classList.remove('open');
 searchInput.blur();
 });
-}
+};
 document.addEventListener('touchmove', function(e) {
 if (!e.target.closest('.drawer')) {
 e.preventDefault();
