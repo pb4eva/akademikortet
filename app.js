@@ -11,6 +11,9 @@ const layerGroups = {};
 const layerColors = {};
 let isDarkMode = true;
 
+// Turn on Dark Simplified Mode by default
+document.body.classList.add('dark-map');
+
 btn.addEventListener('click', () => {
   searchDrawer.classList.remove('open');
   layerDrawer.classList.toggle('open');
@@ -41,50 +44,20 @@ const createPoint = (x, y) => L.point ? L.point(x, y) : new L.Point(x, y);
 // Center directly on Sorø Akademi
 const map = createMap('map', { zoomControl: false }).setView(new Array(55.4302, 11.5565), 16);
 
-// Simplified Dark Basemap (Esri Dark Gray Canvas - Free, No API Key)
-const darkBaseUrl = String.fromCharCode(
-  104,116,116,112,115,58,47,47,115,101,114,118,101,114,46,97,114,99,103,105,115,
-  46,99,111,109,47,65,114,99,71,73,83,47,114,101,115,116,47,115,101,114,118,105,
-  99,101,115,47,67,97,110,118,97,115,47,87,111,114,108,100,95,68,97,114,107,95,
-  71,114,97,121,95,66,97,115,101,47,77,97,112,83,101,114,118,101,114,47,116,105,
-  108,101,47,123,122,125,47,123,121,125,47,123,120,125
+// Reliable OpenStreetMap Tiles (No ArcGIS, No API Key, No Watermark)
+const osmUrl = String.fromCharCode(
+  104,116,116,112,115,58,47,47,116,105,108,101,46,111,112,101,110,115,116,114,
+  101,101,116,109,97,112,46,111,114,103,47,123,122,125,47,123,120,125,47,123,
+  121,125,46,112,110,103
 );
-
-// Simplified Dark Labels Overlay
-const darkLabelsUrl = String.fromCharCode(
-  104,116,116,112,115,58,47,47,115,101,114,118,101,114,46,97,114,99,103,105,115,
-  46,99,111,109,47,65,114,99,71,73,83,47,114,101,115,116,47,115,101,114,118,105,
-  99,101,115,47,67,97,110,118,97,115,47,87,111,114,108,100,95,68,97,114,107,95,
-  71,114,97,121,95,82,101,102,101,114,101,110,99,101,47,77,97,112,83,101,114,118,
-  101,114,47,116,105,108,101,47,123,122,125,47,123,121,125,47,123,120,125
-);
-
-// Light Simplified Basemap (Esri Light Gray Canvas)
-const lightBaseUrl = String.fromCharCode(
-  104,116,116,112,115,58,47,47,115,101,114,118,101,114,46,97,114,99,103,105,115,
-  46,99,111,109,47,65,114,99,71,73,83,47,114,101,115,116,47,115,101,114,118,105,
-  99,101,115,47,67,97,110,118,97,115,47,87,111,114,108,100,95,76,105,103,104,116,
-  95,71,114,97,121,95,66,97,115,101,47,77,97,112,83,101,114,118,101,114,47,116,
-  105,108,101,47,123,122,125,47,123,121,125,47,123,120,125
-);
-
-const darkBaseLayer = createTile(darkBaseUrl, { maxZoom: 20, maxNativeZoom: 16 });
-const darkLabelsLayer = createTile(darkLabelsUrl, { maxZoom: 20, maxNativeZoom: 16 });
-const lightBaseLayer = createTile(lightBaseUrl, { maxZoom: 20, maxNativeZoom: 16 });
-
-darkBaseLayer.addTo(map);
-darkLabelsLayer.addTo(map);
+createTile(osmUrl, { maxZoom: 19 }).addTo(map);
 
 function setMapTheme(dark) {
   isDarkMode = dark;
   if (dark) {
-    map.removeLayer(lightBaseLayer);
-    darkBaseLayer.addTo(map);
-    darkLabelsLayer.addTo(map);
+    document.body.classList.add('dark-map');
   } else {
-    map.removeLayer(darkBaseLayer);
-    map.removeLayer(darkLabelsLayer);
-    lightBaseLayer.addTo(map);
+    document.body.classList.remove('dark-map');
   }
 }
 
@@ -209,7 +182,6 @@ fetch(kmlPath + '?v=' + Date.now())
 function buildLayerDrawer() {
   layerDrawer.innerHTML = '';
 
-  // Add Dark Simplified Map toggle at the top of the drawer
   const themeLabel = document.createElement('label');
   themeLabel.className = 'drawer-item';
   themeLabel.style.borderBottom = '1px solid rgba(255, 255, 255, 0.28)';
@@ -227,7 +199,6 @@ function buildLayerDrawer() {
   themeLabel.appendChild(themeCheck);
   layerDrawer.appendChild(themeLabel);
 
-  // Add all KML layers below
   Object.keys(layerGroups).forEach(name => {
     const label = document.createElement('label');
     label.className = 'drawer-item';
@@ -251,50 +222,57 @@ function buildLayerDrawer() {
     });
 
     spanWrap.appendChild(dot);
-spanWrap.appendChild(textSpan);
-label.appendChild(spanWrap);
-label.appendChild(checkbox);
-layerDrawer.appendChild(label);
-});
+    spanWrap.appendChild(textSpan);
+    label.appendChild(spanWrap);
+    label.appendChild(checkbox);
+    layerDrawer.appendChild(label);
+  });
 }
+
 searchInput.addEventListener('input', () => {
-const q = searchInput.value.toLowerCase().trim();
-layerDrawer.classList.remove('open');
-if (!q) {
-searchDrawer.classList.remove('open');
-return;
-}
-const matches = allPins.filter(p =>
-p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
-).slice(0, 25);
-searchDrawer.innerHTML = '';
-if (matches.length === 0) {
-const empty = document.createElement('div');
-empty.className = 'drawer-item';
-empty.textContent = 'No matching pins';
-searchDrawer.appendChild(empty);
-} else {
-matches.forEach(p => {
-const item = document.createElement('div');
-item.className = 'drawer-item';
-item.style.flexDirection = 'column';
-item.style.alignItems = 'flex-start';
-const titleDiv = document.createElement('div');
-titleDiv.textContent = p.title;
-const subDiv = document.createElement('div');
-subDiv.className = 'pin-sub';
-subDiv.textContent = p.layerName;
-item.appendChild(titleDiv);
-item.appendChild(subDiv);
-item.addEventListener('click', () => goToPin(allPins.indexOf(p)));
-searchDrawer.appendChild(item);
+  const q = searchInput.value.toLowerCase().trim();
+  layerDrawer.classList.remove('open');
+  if (!q) {
+    searchDrawer.classList.remove('open');
+    return;
+  }
+
+  const matches = allPins.filter(p =>
+    p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
+  ).slice(0, 25);
+
+  searchDrawer.innerHTML = '';
+  if (matches.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'drawer-item';
+    empty.textContent = 'No matching pins';
+    searchDrawer.appendChild(empty);
+  } else {
+    matches.forEach(p => {
+      const item = document.createElement('div');
+      item.className = 'drawer-item';
+      item.style.flexDirection = 'column';
+      item.style.alignItems = 'flex-start';
+
+      const titleDiv = document.createElement('div');
+      titleDiv.textContent = p.title;
+
+      const subDiv = document.createElement('div');
+      subDiv.className = 'pin-sub';
+      subDiv.textContent = p.layerName;
+
+      item.appendChild(titleDiv);
+      item.appendChild(subDiv);
+      item.addEventListener('click', () => goToPin(allPins.indexOf(p)));
+      searchDrawer.appendChild(item);
+    });
+  }
+  searchDrawer.classList.add('open');
 });
-}
-searchDrawer.classList.add('open');
-});
+
 map.on('click', () => {
-searchDrawer.classList.remove('open');
-layerDrawer.classList.remove('open');
+  searchDrawer.classList.remove('open');
+  layerDrawer.classList.remove('open');
 searchInput.blur();
 });
 document.addEventListener('touchmove', function(e) {
