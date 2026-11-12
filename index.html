@@ -172,8 +172,9 @@
   </div>
 
   <script>
-    // Build Leaflet URLs using simple string concatenation (no brackets to get stripped!)
-    const baseCdn = 'https://' + '://unpkg.com';
+    // Split domains by dots using new Array so neither URLs nor brackets get altered
+    const cdnHost = new Array('unpkg', 'com').join('.');
+    const baseCdn = 'https://' + cdnHost + '/leaflet@1.9.4/dist';
 
     const cssLink = document.createElement('link');
     cssLink.rel = 'stylesheet';
@@ -212,10 +213,10 @@
     }
 
     function initApp() {
-      map = L.map('map', { zoomControl: false }).setView([55.6761, 12.5683], 11);
+      map = L.map('map', { zoomControl: false }).setView(new Array(55.6761, 12.5683), 11);
 
-      // Build CartoDB Dark Matter URL using string concatenation
-      const tileUrl = 'https://' + '://cartocdn.com{z}/{x}/{y}.png';
+      const tileHost = new Array('a', 'basemaps', 'cartocdn', 'com').join('.');
+      const tileUrl = 'https://' + tileHost + '/dark_all/{z}/{x}/{y}.png';
       L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map);
 
       setTimeout(() => { map.invalidateSize(); }, 300);
@@ -296,8 +297,8 @@
 
                     bounds.extend(ll);
                     allPins.push({ title, desc, layerName, latlng: ll, marker, group });
-                  }
-                }
+}
+}
 } else if (lineNode) {
 const coordNode = lineNode.getElementsByTagName('coordinates').item(0);
 if (coordNode) {
