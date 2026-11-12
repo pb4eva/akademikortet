@@ -228,7 +228,7 @@
         });
 
         if (bounds.isValid()) {
-          map.fitBounds(bounds, { padding: [30, 30] });
+          map.fitBounds(bounds, { padding: [40, 40] });
         }
         document.getElementById('layersBtn').textContent = `Layers (${Object.keys(layerGroups).length})`;
         buildLayerDrawer();
@@ -290,15 +290,14 @@
       searchInput.blur();
     }
 
-    // Close drawers when tapping the map
     map.on('click', () => {
       searchDrawer.classList.remove('open');
       document.getElementById('layerDrawer').classList.remove('open');
-searchInput.blur();
-});
-// Lock outer page bounce while allowing drawer scrolling
+      searchInput.blur();
+    });
 document.addEventListener('touchmove', function(e) {
 if (!e.target.closest('.drawer')) {
 e.preventDefault();
 }
 }, { passive: false });
+    
