@@ -168,13 +168,15 @@
 
   <div class="bottom-bar liquid-glass">
     <input id="searchInput" class="search-box" type="search" placeholder="Search pins..." autocomplete="off">
-    <button id="layersBtn" class="layers-btn" onclick="toggleLayers()">Layers</button>
+    <button id="layersBtn" class="layers-btn" onclick="toggleLayers()">Loading...</button>
   </div>
 
   <script>
-    // Split domains by dots using new Array so neither URLs nor brackets get altered
-    const cdnHost = new Array('unpkg', 'com').join('.');
-    const baseCdn = 'https://' + cdnHost + '/leaflet@1.9.4/dist';
+    const btn = document.getElementById('layersBtn');
+
+    // Load Leaflet from jsDelivr (split domain so nothing gets altered)
+    const cdnHost = new Array('cdn', 'jsdelivr', 'net').join('.');
+    const baseCdn = 'https://' + cdnHost + '/npm/leaflet@1.9.4/dist';
 
     const cssLink = document.createElement('link');
     cssLink.rel = 'stylesheet';
@@ -184,6 +186,7 @@
     const jsScript = document.createElement('script');
     jsScript.src = baseCdn + '/leaflet.js';
     jsScript.onload = initApp;
+    jsScript.onerror = () => { btn.textContent = 'CDN Blocked'; };
     document.head.appendChild(jsScript);
 
     let map;
@@ -213,6 +216,7 @@
     }
 
     function initApp() {
+      btn.textContent = 'Loading KML...';
       map = L.map('map', { zoomControl: false }).setView(new Array(55.6761, 12.5683), 11);
 
       const tileHost = new Array('a', 'basemaps', 'cartocdn', 'com').join('.');
@@ -241,7 +245,7 @@
 
       fetch('map.kml?v=' + Date.now())
         .then(res => {
-          if (!res.ok) throw new Error('Could not find map.kml');
+          if (!res.ok) throw new Error('HTTP ' + res.status);
           return res.text();
         })
         .then(kmlText => {
@@ -293,10 +297,9 @@
                       weight: 2,
                       opacity: 1,
                       fillOpacity: 0.92
-                    }).bindPopup(popupHtml).addTo(group);
-
-                    bounds.extend(ll);
-                    allPins.push({ title, desc, layerName, latlng: ll, marker, group });
+}).bindPopup(popupHtml).addTo(group);
+bounds.extend(ll);
+allPins.push({ title, desc, layerName, latlng: ll, marker, group });
 }
 }
 } else if (lineNode) {
@@ -326,11 +329,11 @@ map.invalidateSize();
 if (bounds.isValid()) {
 map.fitBounds(bounds, { padding: L.point(40, 40) });
 }
-document.getElementById('layersBtn').textContent = Layers (${Object.keys(layerGroups).length});
+btn.textContent = Layers (${Object.keys(layerGroups).length});
 buildLayerDrawer();
 })
 .catch(err => {
-document.getElementById('layersBtn').textContent = 'No KML';
+btn.textContent = 'KML: ' + err.message;
 console.error(err);
 });
 function buildLayerDrawer() {
