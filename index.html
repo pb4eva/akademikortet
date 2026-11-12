@@ -14,45 +14,105 @@
     }
     body {
       padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-      box-sizing: border-box; display: flex; flex-direction: column;
+      box-sizing: border-box;
     }
     #map {
-      flex: 1; width: 100%; border-radius: 16px; overflow: hidden; z-index: 1;
+      width: 100%; height: 100%; border-radius: 20px; overflow: hidden; z-index: 1;
     }
+
+    /* Shared Liquid Glass Material */
+    .liquid-glass {
+      background: linear-gradient(180deg, rgba(45, 45, 50, 0.55) 0%, rgba(22, 22, 26, 0.72) 100%);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    /* Floating Bottom Dock */
     .bottom-bar {
-      height: 58px; display: flex; gap: 8px; padding: 8px 4px 2px 4px;
-      box-sizing: border-box; align-items: center; z-index: 10;
+      position: absolute;
+      left: calc(12px + env(safe-area-inset-left));
+      right: calc(12px + env(safe-area-inset-right));
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      height: 54px;
+      border-radius: 27px;
+      display: flex;
+      gap: 8px;
+      padding: 6px;
+      box-sizing: border-box;
+      align-items: center;
+      z-index: 10;
     }
+
     .search-box {
-      flex: 1; height: 42px; background: #1c1c1e; border: 1px solid #2c2c2e;
-      border-radius: 12px; color: #fff; padding: 0 12px; font-size: 15px; outline: none;
+      flex: 1;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      color: #fff;
+      padding: 0 14px;
+      font-size: 15px;
+      outline: none;
     }
+    .search-box::placeholder {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
     .layers-btn {
-      height: 42px; background: #0a84ff; color: #fff; border: none;
-      border-radius: 12px; padding: 0 14px; font-size: 14px; font-weight: 600;
+      height: 40px;
+      background: linear-gradient(180deg, rgba(40, 155, 255, 0.78) 0%, rgba(10, 115, 240, 0.88) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow:
+        0 4px 12px rgba(10, 132, 255, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      color: #fff;
+      border-radius: 20px;
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
     }
+
+    /* Floating Glass Drawers */
     .drawer {
-      position: absolute; left: 8px; right: 8px; bottom: calc(64px + env(safe-area-inset-bottom));
-      max-height: 45vh; background: rgba(28, 28, 30, 0.96); backdrop-filter: blur(12px);
-      border: 1px solid #38383a; border-radius: 16px; padding: 12px;
-      overflow-y: auto; z-index: 20; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      position: absolute;
+      left: calc(12px + env(safe-area-inset-left));
+      right: calc(12px + env(safe-area-inset-right));
+      bottom: calc(74px + env(safe-area-inset-bottom));
+      max-height: 45vh;
+      border-radius: 24px;
+      padding: 8px 14px;
+      overflow-y: auto;
+      z-index: 20;
+      display: none;
     }
     .drawer.open { display: block; }
+
     .drawer-item {
-      padding: 10px 8px; border-bottom: 1px solid #2c2c2e;
-      display: flex; justify-content: space-between; align-items: center; font-size: 14px;
+      padding: 11px 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
     }
     .drawer-item:last-child { border-bottom: none; }
-    .pin-sub { font-size: 11px; color: #8e8e93; margin-top: 2px; }
+    .pin-sub { font-size: 11px; color: rgba(255, 255, 255, 0.65); margin-top: 2px; }
   </style>
 </head>
 <body>
   <div id="map"></div>
 
-  <div id="searchDrawer" class="drawer"></div>
-  <div id="layerDrawer" class="drawer"></div>
+  <div id="searchDrawer" class="drawer liquid-glass"></div>
+  <div id="layerDrawer" class="drawer liquid-glass"></div>
 
-  <div class="bottom-bar">
+  <div class="bottom-bar liquid-glass">
     <input id="searchInput" class="search-box" type="search" placeholder="Search pins..." autocomplete="off">
     <button class="layers-btn" onclick="toggleLayers()">Layers (10)</button>
   </div>
@@ -134,7 +194,7 @@
         p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
       ).slice(0, 20);
 
-      searchDrawer.innerHTML = matches.length ? matches.map((p, i) => `
+      searchDrawer.innerHTML = matches.length ? matches.map(p => `
         <div class="drawer-item" style="flex-direction:column;align-items:flex-start" onclick="goToPin(${allPins.indexOf(p)})">
           <div>${p.title}</div>
           <div class="pin-sub">${p.layerName}</div>
